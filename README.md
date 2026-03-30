@@ -85,7 +85,7 @@ COINGECKO_BASE_URL=https://api.coingecko.com/api/v3
 BINANCE_API_BASE_URL=https://api.binance.com
 OPENAI_API_URL=https://api.openai.com/v1/chat/completions
 OPENAI_API_KEY=
-OPENAI_MODEL=gpt-4.1-mini
+OPENAI_MODEL=gpt-5-mini
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
 ```
@@ -156,7 +156,7 @@ COINGECKO_BASE_URL=https://api.coingecko.com/api/v3
 BINANCE_API_BASE_URL=https://api.binance.com
 OPENAI_API_URL=https://api.openai.com/v1/chat/completions
 OPENAI_API_KEY=
-OPENAI_MODEL=gpt-4.1-mini
+OPENAI_MODEL=gpt-5-mini
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
 ```
