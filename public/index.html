@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kinetic Void | CryptoBot Pro Desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <style>
+      :root{--bg:#0e0e0e;--surface:#131313;--surface2:#1a1919;--surface3:#201f1f;--surface4:#262626;--well:#000;--line:rgba(73,72,71,.24);--text:#fff;--muted:#adaaaa;--primary:#5eb4ff;--primaryDim:#15a4ff;--positive:#4ce3a5;--danger:#ff716c;--glass:rgba(60,71,90,.32);--glow:0 0 40px rgba(94,180,255,.07)}
+      *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}body{font-family:Inter,sans-serif;overflow-x:hidden;background:radial-gradient(circle at 18% 16%,rgba(94,180,255,.16),transparent 24%),radial-gradient(circle at 86% 12%,rgba(21,164,255,.12),transparent 20%),linear-gradient(180deg,#090909,#0e0e0e 32%,#101010 100%)}
+      body:before,body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0}body:before{opacity:.28;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Cg fill='none' stroke='rgba(94,180,255,0.26)' stroke-width='2'%3E%3Cpath d='M95 580v-142m-14 28h28m-28 74h28'/%3E%3Cpath d='M182 532v-176m-14 32h28m-28 86h28'/%3E%3Cpath d='M270 635v-120m-14 18h28m-28 70h28'/%3E%3Cpath d='M355 504v-160m-14 24h28m-28 92h28'/%3E%3Cpath d='M445 598v-132m-14 22h28m-28 68h28'/%3E%3Cpath d='M534 465v-168m-14 28h28m-28 92h28'/%3E%3Cpath d='M622 544v-136m-14 18h28m-28 70h28'/%3E%3Cpath d='M712 422v-184m-14 28h28m-28 98h28'/%3E%3C/g%3E%3Cpath d='M0 715c134-86 192-204 290-196 98 8 132 138 236 142 104 4 130-112 244-132 114-20 178 76 274 52 96-24 150-110 278-104' stroke='rgba(94,180,255,0.3)' stroke-width='5' fill='none'/%3E%3C/svg%3E") no-repeat right top/74vw}body:after{background:linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);background-size:90px 90px;mask-image:linear-gradient(180deg,rgba(0,0,0,.2),transparent 80%);opacity:.35}
+      .material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 300,"GRAD" 0,"opsz" 24}
+      .shell{position:relative;z-index:1;width:min(1580px,calc(100% - 32px));margin:16px auto 48px;padding:16px;border-radius:36px;background:linear-gradient(180deg,rgba(19,19,19,.96),rgba(14,14,14,.96));box-shadow:var(--glow)}
+      .topbar,.brandline,.top-actions,.panel-head,.row,.pill,.chip,.status-chip,.nav-item{display:flex;align-items:center}.topbar{justify-content:space-between;gap:18px;padding:10px 10px 20px}.brandline{gap:14px}.top-actions,.row{gap:12px}.row{flex-wrap:wrap}.panel-head{justify-content:space-between;gap:12px;margin-bottom:18px}
+      .logo{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,rgba(21,164,255,.7),rgba(94,180,255,.16));display:grid;place-items:center;color:#001e33;font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.06em;box-shadow:0 0 24px rgba(94,180,255,.24)}
+      .brand-title,.panel-title,.side-title,h1,strong{font-family:"Space Grotesk",sans-serif}.brand-title{margin:0;font-size:clamp(1.3rem,2.4vw,2rem);letter-spacing:-.05em}.brand-subtitle,.eyebrow,label,th,.chip,.status-chip,.metric small,.mini-card small{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.18em}
+      .chip,.status-chip,.pill{gap:10px;padding:10px 14px;border-radius:999px;background:rgba(94,180,255,.08);color:var(--primary)}.pill{padding:10px 12px;font-size:.8rem;color:var(--muted)}
+      .chip-dot,.status-dot{width:8px;height:8px;border-radius:999px;background:var(--primary);box-shadow:0 0 12px rgba(94,180,255,.65);animation:pulse 2s ease-in-out infinite}.status-dot{background:var(--danger);box-shadow:0 0 12px rgba(255,113,108,.5);animation:none}.status-dot.online{background:var(--positive);box-shadow:0 0 12px rgba(76,227,165,.5)}
+      .avatar{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(94,180,255,.6),transparent 28%),linear-gradient(135deg,#1a2630,#0e0e0e);box-shadow:0 0 0 1px rgba(73,72,71,.25)}
+      .layout{display:grid;grid-template-columns:288px minmax(0,1fr);gap:18px}.workspace,.stack,.nav,.hero-visual,.login-card,.table-shell,.alert-list{display:grid;gap:18px}
+      .sidebar,.panel,.hero,.floating-card{background:linear-gradient(180deg,rgba(26,25,25,.96),rgba(19,19,19,.96));border-radius:26px;box-shadow:var(--glow)}.sidebar{position:sticky;top:18px;padding:22px;height:calc(100vh - 52px);display:flex;flex-direction:column;gap:18px}.panel,.hero{padding:24px}.hero{position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:auto -8% -28% auto;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(94,180,255,.17),transparent 60%);filter:blur(20px)}
+      .side-block,.metric,.mini-card,.alert-card{padding:18px;border-radius:22px;background:linear-gradient(180deg,rgba(32,31,31,.88),rgba(19,19,19,.9))}.eyebrow{margin:0 0 8px}.side-title,.panel-title{margin:8px 0 0;font-size:1.2rem;letter-spacing:-.04em}.side-copy,p{color:var(--muted);line-height:1.7}
+      .nav{gap:10px}.nav-item{gap:12px;padding:14px 16px;border-radius:18px;color:var(--muted);transition:transform .2s ease-out,background .2s ease-out,color .2s ease-out}.nav-item.active,.nav-item:hover{color:var(--text);background:linear-gradient(135deg,rgba(94,180,255,.12),rgba(94,180,255,.04));transform:translateX(4px)}
+      .hero-grid{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(340px,.78fr);gap:18px}.hero h1{margin:0;font-size:clamp(2.8rem,5vw,5.35rem);line-height:.94;letter-spacing:-.07em;max-width:10ch}.accent{color:var(--primary)}
+      .floating-card{position:relative;overflow:hidden;padding:22px;background:linear-gradient(180deg,rgba(60,71,90,.36),rgba(19,19,19,.9)),linear-gradient(135deg,rgba(21,164,255,.1),transparent 40%);backdrop-filter:blur(20px)}
+      .chart-preview{height:220px;border-radius:22px;background:linear-gradient(180deg,rgba(0,0,0,.32),rgba(0,0,0,.1)),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='500' viewBox='0 0 900 500'%3E%3Crect width='900' height='500' fill='%230a0a0a'/%3E%3Cpath d='M0 388C87 344 120 244 193 232s93 74 165 70c72-4 115-104 186-118 71-14 109 48 177 42 68-6 119-64 179-82' stroke='rgba(94,180,255,0.86)' stroke-width='5' fill='none'/%3E%3Cg fill='none' stroke='rgba(94,180,255,0.46)' stroke-width='2'%3E%3Cpath d='M82 304v-108m-10 18h20m-20 58h20'/%3E%3Cpath d='M170 262v-146m-10 22h20m-20 74h20'/%3E%3Cpath d='M258 338v-108m-10 16h20m-20 58h20'/%3E%3Cpath d='M350 238v-132m-10 22h20m-20 70h20'/%3E%3Cpath d='M434 282v-112m-10 20h20m-20 58h20'/%3E%3C/g%3E%3C/svg%3E") center/cover;box-shadow:inset 0 0 0 1px rgba(73,72,71,.14)}
+      .hero-mini-stats,.metrics-grid,.form-grid,.dense-grid,.band{display:grid;gap:14px}.hero-mini-stats{grid-template-columns:repeat(3,1fr)}.metrics-grid{grid-template-columns:repeat(4,1fr)}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dense-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.band{grid-template-columns:1.3fr .7fr}
+      .metric strong,.mini-card strong{font-size:1.18rem;letter-spacing:-.03em}.section-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);gap:18px}
+      .field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}input,select,textarea,button{width:100%;border:0;font:inherit}input,select,textarea{padding:14px 16px;border-radius:16px;color:var(--text);background:var(--well);box-shadow:inset 0 0 0 1px rgba(94,180,255,.08);transition:box-shadow .2s ease-out,transform .2s ease-out,background .2s ease-out}input:focus,select:focus,textarea:focus{outline:none;background:#030303;box-shadow:inset 0 0 0 1px rgba(94,180,255,.3),0 0 0 6px rgba(94,180,255,.07)}textarea{min-height:96px;resize:vertical}
+      button{position:relative;overflow:hidden;min-height:48px;padding:14px 18px;border-radius:14px;color:#04233c;font-weight:800;letter-spacing:.01em;cursor:pointer;background:linear-gradient(135deg,var(--primaryDim),var(--primary));box-shadow:0 0 15px rgba(94,180,255,.3);transition:transform .2s ease-out,box-shadow .2s ease-out,filter .2s ease-out}button:before{content:"";position:absolute;inset:-140% auto auto -30%;width:38%;height:360%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:rotate(18deg);transition:transform .42s ease-out}button:hover{transform:translateY(-2px) scale(1.02)}button:hover:before{transform:translateX(250%) rotate(18deg)}button.secondary{color:var(--text);background:linear-gradient(180deg,rgba(38,38,38,.9),rgba(26,25,25,.96));box-shadow:inset 0 0 0 1px rgba(94,180,255,.2)}button.ghost{color:var(--primary);background:transparent;box-shadow:inset 0 0 0 1px rgba(94,180,255,.16)}
+      .table{overflow:auto}table{width:100%;min-width:720px;border-collapse:separate;border-spacing:0 10px}th{padding:0 14px 6px;text-align:left;font-weight:600}td{padding:16px 14px;background:rgba(32,31,31,.76);font-size:.95rem}td:first-child{border-radius:16px 0 0 16px}td:last-child{border-radius:0 16px 16px 0}
+      .code{padding:18px;border-radius:20px;background:#040404;color:#cdd8e5;font-family:Consolas,monospace;font-size:.86rem;white-space:pre-wrap;word-break:break-word;box-shadow:inset 0 0 0 1px rgba(94,180,255,.08)}.ok{color:var(--positive)}.danger{color:var(--danger)}.muted{color:var(--muted)}.stat-bar{height:8px;border-radius:999px;margin-top:12px;background:rgba(255,255,255,.06);overflow:hidden}.stat-bar>span{display:block;height:100%;width:72%;background:linear-gradient(90deg,var(--primaryDim),var(--primary));box-shadow:0 0 16px rgba(94,180,255,.28)}
+      @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.16);opacity:.72}}
+      @media (max-width:1320px){.layout,.hero-grid,.section-grid,.band{grid-template-columns:1fr}.sidebar{position:static;height:auto}.dense-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      @media (max-width:920px){.shell{width:min(100% - 16px,100%);margin:8px auto 24px;padding:10px;border-radius:24px}.topbar{flex-direction:column;align-items:flex-start}.top-actions,.row{width:100%}.metrics-grid,.hero-mini-stats,.form-grid,.dense-grid{grid-template-columns:1fr}.hero,.panel,.sidebar{padding:18px}.hero h1{font-size:clamp(2.3rem,10vw,3.6rem)}}
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div class="brandline">
+          <div class="logo">KV</div>
+          <div>
+            <div class="brand-subtitle">Crypto trading control layer</div>
+            <h1 class="brand-title">Kinetic Void Desk</h1>
+          </div>
+        </div>
+        <div class="top-actions">
+          <div class="chip"><span class="chip-dot"></span>AI engine live</div>
+          <div class="status-chip"><span id="sessionDot" class="status-dot"></span><span id="sessionLabel">Offline</span></div>
+          <div class="avatar" aria-hidden="true"></div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="side-block">
+            <p class="eyebrow">System identity</p>
+            <h2 class="side-title">Mesa de controle com visual premium de trading</h2>
+            <p class="side-copy">Adaptei o painel para seguir a referência da pasta `dising bot`: superfícies escuras, neon azul, tipografia editorial e atmosfera de SaaS profissional.</p>
+          </div>
+
+          <nav class="nav">
+            <div class="nav-item active"><span class="material-symbols-outlined">space_dashboard</span><span>Overview</span></div>
+            <div class="nav-item"><span class="material-symbols-outlined">tune</span><span>Configuração</span></div>
+            <div class="nav-item"><span class="material-symbols-outlined">candlestick_chart</span><span>Operações</span></div>
+            <div class="nav-item"><span class="material-symbols-outlined">monitoring</span><span>Backtest</span></div>
+            <div class="nav-item"><span class="material-symbols-outlined">notifications_active</span><span>Alertas</span></div>
+          </nav>
+
+          <div class="side-block">
+            <p class="eyebrow">Sessão</p>
+            <h3 id="statusTitle" class="side-title">Sessão inativa</h3>
+            <p id="statusText" class="side-copy">Crie sua conta ou entre para carregar saldo, posições, alertas e o desk completo.</p>
+          </div>
+
+          <div class="side-block">
+            <p class="eyebrow">Setup rápido</p>
+            <div class="pill"><span class="material-symbols-outlined">shield</span>Simulation como padrão</div>
+            <div class="pill" style="margin-top:10px"><span class="material-symbols-outlined">query_stats</span>15m + 1h na leitura</div>
+            <div class="pill" style="margin-top:10px"><span class="material-symbols-outlined">flash_on</span>Botões e estados animados</div>
+          </div>
+        </aside>
+
+        <main class="workspace">
+          <section class="hero">
+            <div class="hero-grid">
+              <div class="hero-copy">
+                <div class="chip"><span class="chip-dot"></span>Neon desk for autonomous crypto trading</div>
+                <h1 style="margin-top:18px">Seu <span class="accent">trader bot</span> com cara de produto sério.</h1>
+                <p>Login, métricas, risco, credenciais Binance, posições abertas, histórico e backtest agora vivem em um layout mais forte, mais vendável e muito mais próximo de uma plataforma profissional de operação.</p>
+                <div class="hero-mini-stats" style="margin-top:24px">
+                  <div class="mini-card"><small>Leitura</small><strong>EMA, RSI, ATR, VWAP</strong></div>
+                  <div class="mini-card"><small>Defesa</small><strong>SL, TP, trailing e break-even</strong></div>
+                  <div class="mini-card"><small>Execução</small><strong>Binance com filtros reais</strong></div>
+                </div>
+              </div>
+
+              <div class="hero-visual">
+                <div class="floating-card">
+                  <div class="panel-head" style="margin-bottom:18px">
+                    <div>
+                      <p class="eyebrow" style="margin-bottom:6px">Core visual</p>
+                      <div class="side-title">CryptoBot Performance Layer</div>
+                    </div>
+                    <div class="chip"><span class="chip-dot"></span>live</div>
+                  </div>
+                  <div class="chart-preview"></div>
+                </div>
+
+                <div class="floating-card login-card">
+                  <div>
+                    <p class="eyebrow">Acesso</p>
+                    <h2 class="panel-title" style="margin-top:4px">Login do operador</h2>
+                  </div>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="email">Email</label>
+                      <input id="email" placeholder="voce@dominio.com" value="demo@bot.local" />
+                    </div>
+                    <div class="field">
+                      <label for="name">Nome</label>
+                      <input id="name" placeholder="Seu nome" value="Demo User" />
+                    </div>
+                    <div class="field full">
+                      <label for="password">Senha</label>
+                      <input id="password" type="password" placeholder="Sua senha" value="Password123!" />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <button onclick="register()">Criar conta</button>
+                    <button class="secondary" onclick="login()">Entrar</button>
+                    <button class="ghost" onclick="refreshDashboard()">Atualizar desk</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">System overview</p>
+                <h2 class="panel-title">Métricas principais</h2>
+              </div>
+              <span id="modeBadge" class="chip">Modo: simulation</span>
+            </div>
+            <div id="stats" class="metrics-grid"></div>
+          </section>
+
+          <section class="section-grid">
+            <div class="stack">
+              <section class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Risk engine</p>
+                    <h2 class="panel-title">Configuração operacional</h2>
+                  </div>
+                  <span id="settingsStatus" class="pill">Aguardando ajustes</span>
+                </div>
+
+                <div class="dense-grid">
+                  <div class="field"><label for="mode">Modo</label><select id="mode"><option value="simulation">Simulation</option><option value="real">Real</option></select></div>
+                  <div class="field"><label for="analysisIntervalMinutes">Intervalo</label><input id="analysisIntervalMinutes" type="number" min="1" value="5" /></div>
+                  <div class="field"><label for="baseTradeAmount">Valor por trade</label><input id="baseTradeAmount" type="number" min="1" step="0.01" value="100" /></div>
+                  <div class="field"><label for="maxOpenTrades">Máx aberto</label><input id="maxOpenTrades" type="number" min="1" value="3" /></div>
+                  <div class="field"><label for="stopLossPct">Stop loss %</label><input id="stopLossPct" type="number" min="0.1" step="0.1" value="2.5" /></div>
+                  <div class="field"><label for="takeProfitPct">Take profit %</label><input id="takeProfitPct" type="number" min="0.1" step="0.1" value="4.5" /></div>
+                  <div class="field"><label for="trailingStopPct">Trailing %</label><input id="trailingStopPct" type="number" min="0.1" step="0.1" value="1.5" /></div>
+                  <div class="field"><label for="breakEvenTriggerPct">Break-even %</label><input id="breakEvenTriggerPct" type="number" min="0.1" step="0.1" value="1" /></div>
+                  <div class="field"><label for="maxDailyLossPct">Perda diária %</label><input id="maxDailyLossPct" type="number" min="0.1" step="0.1" value="2" /></div>
+                  <div class="field"><label for="maxPositionSizePct">Exposição %</label><input id="maxPositionSizePct" type="number" min="0.1" step="0.1" value="10" /></div>
+                  <div class="field"><label for="minConfidence">Confiança mínima</label><input id="minConfidence" type="number" min="0" max="100" value="72" /></div>
+                  <div class="field"><label for="maxDailyTrades">Máx trades dia</label><input id="maxDailyTrades" type="number" min="1" value="8" /></div>
+                  <div class="field"><label for="cooldownMinutes">Cooldown</label><input id="cooldownMinutes" type="number" min="1" value="30" /></div>
+                  <div class="field"><label for="lowMarketCapLimit">Market cap máx</label><input id="lowMarketCapLimit" type="number" min="1" step="1" value="500000000" /></div>
+                  <div class="field"><label for="minVolumeGrowthPct">Volume growth min %</label><input id="minVolumeGrowthPct" type="number" min="0" step="0.1" value="15" /></div>
+                  <div class="field"><label for="maxSpreadPct">Spread max %</label><input id="maxSpreadPct" type="number" min="0.01" step="0.01" value="0.2" /></div>
+                  <div class="field"><label for="slippagePct">Slippage %</label><input id="slippagePct" type="number" min="0.01" step="0.01" value="0.2" /></div>
+                  <div class="field"><label for="takerFeePct">Taxa taker %</label><input id="takerFeePct" type="number" min="0.01" step="0.01" value="0.1" /></div>
+                  <div class="field"><label for="makerFeePct">Taxa maker %</label><input id="makerFeePct" type="number" min="0.01" step="0.01" value="0.1" /></div>
+                  <div class="field"><label for="quoteAsset">Quote asset</label><input id="quoteAsset" value="USDT" /></div>
+                  <div class="field full"><label for="whitelist">Whitelist</label><textarea id="whitelist" placeholder="BTCUSDT,ETHUSDT,SOLUSDT"></textarea></div>
+                  <div class="field full"><label for="blacklist">Blacklist</label><textarea id="blacklist" placeholder="Ativos bloqueados"></textarea></div>
+                </div>
+                <div class="row" style="margin-top:18px">
+                  <button onclick="saveSettings()">Salvar configuração</button>
+                  <button class="secondary" onclick="startBot()">Iniciar bot</button>
+                  <button class="ghost" onclick="stopBot()">Parar bot</button>
+                  <button class="ghost" onclick="runBot()">Executar ciclo</button>
+                </div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Open positions</p>
+                    <h2 class="panel-title">Posições abertas</h2>
+                  </div>
+                  <span id="openPositionsBadge" class="pill">0 abertas</span>
+                </div>
+                <div class="table"><table><thead><tr><th>Ativo</th><th>Entrada</th><th>Atual</th><th>Proteção</th><th>Status</th></tr></thead><tbody id="positions"></tbody></table></div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Execution log</p>
+                    <h2 class="panel-title">Ordens recentes</h2>
+                  </div>
+                </div>
+                <div class="table"><table><thead><tr><th>Ativo</th><th>Lado</th><th>Modo</th><th>IA</th><th>Execução</th><th>Horário</th></tr></thead><tbody id="trades"></tbody></table></div>
+              </section>
+            </div>
+
+            <div class="stack">
+              <section class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Exchange credentials</p>
+                    <h2 class="panel-title">Binance</h2>
+                  </div>
+                  <span id="credentialsStatus" class="pill">Não configurado</span>
+                </div>
+                <div class="form-grid">
+                  <div class="field full"><label for="binanceApiKey">API Key</label><input id="binanceApiKey" placeholder="Cole sua API Key" /></div>
+                  <div class="field full"><label for="binanceApiSecret">API Secret</label><input id="binanceApiSecret" type="password" placeholder="Cole sua API Secret" /></div>
+                </div>
+                <div class="row" style="margin-top:18px"><button onclick="saveBinanceCredentials()">Salvar credenciais</button></div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Backtest engine</p>
+                    <h2 class="panel-title">Simulação rápida</h2>
+                  </div>
+                </div>
+                <div class="band">
+                  <div class="mini-card"><small>Cenário</small><strong>BTCUSDT · 1h · 320 candles</strong><p style="margin:12px 0 0">Roda um snapshot rápido da estratégia com slippage, taxas e métricas de resultado.</p></div>
+                  <div class="mini-card"><small>Força</small><strong>Engine pronta</strong><div class="stat-bar"><span></span></div></div>
+                </div>
+                <div class="row" style="margin-top:18px"><button class="secondary" onclick="runBacktest()">Rodar BTCUSDT</button></div>
+                <div id="backtest" class="code" style="margin-top:18px">Nenhum backtest executado.</div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Bot snapshot</p>
+                    <h2 class="panel-title">Resumo técnico</h2>
+                  </div>
+                </div>
+                <div id="settings" class="code">Sem dados carregados.</div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Alert stream</p>
+                    <h2 class="panel-title">Feed de eventos</h2>
+                  </div>
+                </div>
+                <div id="alerts" class="alert-list"></div>
+              </section>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script>
+      let token = "";
+      const $ = (id) => document.getElementById(id);
+      const emailInput = $("email"), nameInput = $("name"), passwordInput = $("password"), statusTitleEl = $("statusTitle"), statusTextEl = $("statusText"), sessionDotEl = $("sessionDot"), sessionLabelEl = $("sessionLabel"), statsEl = $("stats"), settingsEl = $("settings"), settingsStatusEl = $("settingsStatus"), credentialsStatusEl = $("credentialsStatus"), modeBadgeEl = $("modeBadge"), openPositionsBadgeEl = $("openPositionsBadge"), positionsEl = $("positions"), tradesEl = $("trades"), alertsEl = $("alerts"), backtestEl = $("backtest"), binanceApiKeyInput = $("binanceApiKey"), binanceApiSecretInput = $("binanceApiSecret");
+      const modeInput = $("mode"), analysisIntervalInput = $("analysisIntervalMinutes"), baseTradeAmountInput = $("baseTradeAmount"), maxOpenTradesInput = $("maxOpenTrades"), stopLossPctInput = $("stopLossPct"), takeProfitPctInput = $("takeProfitPct"), trailingStopPctInput = $("trailingStopPct"), breakEvenTriggerPctInput = $("breakEvenTriggerPct"), maxDailyLossPctInput = $("maxDailyLossPct"), maxPositionSizePctInput = $("maxPositionSizePct"), minConfidenceInput = $("minConfidence"), maxDailyTradesInput = $("maxDailyTrades"), cooldownMinutesInput = $("cooldownMinutes"), lowMarketCapLimitInput = $("lowMarketCapLimit"), minVolumeGrowthPctInput = $("minVolumeGrowthPct"), maxSpreadPctInput = $("maxSpreadPct"), slippagePctInput = $("slippagePct"), takerFeePctInput = $("takerFeePct"), makerFeePctInput = $("makerFeePct"), quoteAssetInput = $("quoteAsset"), whitelistInput = $("whitelist"), blacklistInput = $("blacklist");
+      const parseAssetList = (v) => v.split(",").map((i) => i.trim().toUpperCase()).filter(Boolean);
+      const fmtMoney = (v) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(Number(v || 0));
+      const fmtNumber = (v, d = 2) => Number(v || 0).toFixed(d);
+      const updateSession = (on, title, detail) => {
+        sessionDotEl.classList.toggle("online", on);
+        sessionLabelEl.textContent = on ? "Online" : "Offline";
+        statusTitleEl.textContent = title;
+        statusTextEl.textContent = detail;
+        statusTextEl.className = on ? "side-copy ok" : "side-copy muted";
+      };
+      function hydrateSettings(s) {
+        modeInput.value = s.mode ?? "simulation";
+        analysisIntervalInput.value = s.analysisIntervalMinutes ?? 5;
+        baseTradeAmountInput.value = s.baseTradeAmount ?? 100;
+        maxOpenTradesInput.value = s.maxOpenTrades ?? 3;
+        stopLossPctInput.value = s.stopLossPct ?? 2.5;
+        takeProfitPctInput.value = s.takeProfitPct ?? 4.5;
+        trailingStopPctInput.value = s.trailingStopPct ?? 1.5;
+        breakEvenTriggerPctInput.value = s.breakEvenTriggerPct ?? 1;
+        maxDailyLossPctInput.value = s.maxDailyLossPct ?? 2;
+        maxPositionSizePctInput.value = s.maxPositionSizePct ?? 10;
+        minConfidenceInput.value = s.minConfidence ?? 72;
+        maxDailyTradesInput.value = s.maxDailyTrades ?? 8;
+        cooldownMinutesInput.value = s.cooldownMinutes ?? 30;
+        lowMarketCapLimitInput.value = s.lowMarketCapLimit ?? 500000000;
+        minVolumeGrowthPctInput.value = s.minVolumeGrowthPct ?? 15;
+        maxSpreadPctInput.value = s.maxSpreadPct ?? 0.2;
+        slippagePctInput.value = s.slippagePct ?? 0.2;
+        takerFeePctInput.value = s.takerFeePct ?? 0.1;
+        makerFeePctInput.value = s.makerFeePct ?? 0.1;
+        quoteAssetInput.value = s.quoteAsset ?? "USDT";
+        whitelistInput.value = (s.whitelist || []).join(",");
+        blacklistInput.value = (s.blacklist || []).join(",");
+      }
+      async function api(path, opt = {}) {
+        const headers = { "Content-Type": "application/json", ...(opt.headers || {}) };
+        if (token) headers.Authorization = `Bearer ${token}`;
+        const r = await fetch(path, { ...opt, headers });
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.error || "Erro inesperado");
+        return d;
+      }
+      async function register() {
+        try {
+          const d = await api("/api/auth/register", { method: "POST", body: JSON.stringify({ email: emailInput.value, name: nameInput.value, password: passwordInput.value }) });
+          token = d.token;
+          updateSession(true, "Conta criada", "A sessão foi autenticada e o desk está pronto para configurar.");
+          await refreshDashboard();
+        } catch (e) { updateSession(false, "Falha no cadastro", e.message); }
+      }
+      async function login() {
+        try {
+          const d = await api("/api/auth/login", { method: "POST", body: JSON.stringify({ email: emailInput.value, password: passwordInput.value }) });
+          token = d.token;
+          updateSession(true, "Sessão ativa", "Operador autenticado com sucesso e dados do desk carregados.");
+          await refreshDashboard();
+        } catch (e) { updateSession(false, "Falha no login", e.message); }
+      }
+      async function saveBinanceCredentials() {
+        try {
+          await api("/api/credentials/binance", { method: "PUT", body: JSON.stringify({ apiKey: binanceApiKeyInput.value, apiSecret: binanceApiSecretInput.value }) });
+          credentialsStatusEl.textContent = "Credenciais salvas";
+          binanceApiSecretInput.value = "";
+        } catch (e) { credentialsStatusEl.textContent = e.message; }
+      }
+      async function saveSettings() {
+        try {
+          const s = await api("/api/bot/settings", { method: "PUT", body: JSON.stringify({ mode: modeInput.value, quoteAsset: quoteAssetInput.value.toUpperCase(), baseTradeAmount: Number(baseTradeAmountInput.value), maxOpenTrades: Number(maxOpenTradesInput.value), whitelist: parseAssetList(whitelistInput.value), blacklist: parseAssetList(blacklistInput.value), analysisIntervalMinutes: Number(analysisIntervalInput.value), maxDailyLossPct: Number(maxDailyLossPctInput.value), stopLossPct: Number(stopLossPctInput.value), takeProfitPct: Number(takeProfitPctInput.value), trailingStopPct: Number(trailingStopPctInput.value), breakEvenTriggerPct: Number(breakEvenTriggerPctInput.value), maxPositionSizePct: Number(maxPositionSizePctInput.value), cooldownMinutes: Number(cooldownMinutesInput.value), minConfidence: Number(minConfidenceInput.value), maxDailyTrades: Number(maxDailyTradesInput.value), lowMarketCapLimit: Number(lowMarketCapLimitInput.value), minVolumeGrowthPct: Number(minVolumeGrowthPctInput.value), maxSpreadPct: Number(maxSpreadPctInput.value), slippagePct: Number(slippagePctInput.value), takerFeePct: Number(takerFeePctInput.value), makerFeePct: Number(makerFeePctInput.value) }) });
+          settingsStatusEl.textContent = "Configuração sincronizada";
+          hydrateSettings(s);
+          settingsEl.textContent = JSON.stringify(s, null, 2);
+          await refreshDashboard();
+        } catch (e) { settingsStatusEl.textContent = e.message; }
+      }
+      async function startBot() { try { const d = await api("/api/bot/start", { method: "POST" }); settingsStatusEl.textContent = `Bot ativo em ${d.settings.mode}`; await refreshDashboard(); } catch (e) { settingsStatusEl.textContent = e.message; } }
+      async function stopBot() { try { await api("/api/bot/stop", { method: "POST" }); settingsStatusEl.textContent = "Bot pausado"; await refreshDashboard(); } catch (e) { settingsStatusEl.textContent = e.message; } }
+      async function runBot() { try { const d = await api("/api/bot/run-once", { method: "POST" }); settingsStatusEl.textContent = d.message; await refreshDashboard(); } catch (e) { settingsStatusEl.textContent = e.message; } }
+      async function runBacktest() {
+        try {
+          const d = await api("/api/backtest", { method: "POST", body: JSON.stringify({ symbol: "BTCUSDT", interval: "1h", limit: 320 }) });
+          backtestEl.textContent = JSON.stringify(d.result, null, 2);
+        } catch (e) { backtestEl.textContent = e.message; }
+      }
+      function renderStats(s) {
+        const pnl = Number(s.portfolio.todayRealizedPnl || 0);
+        statsEl.innerHTML = `<div class="metric"><small>Saldo</small><strong>${fmtMoney(s.portfolio.cashBalance)}</strong></div><div class="metric"><small>Exposição</small><strong>${fmtMoney(s.portfolio.exposure)}</strong></div><div class="metric"><small>PnL diário</small><strong class="${pnl >= 0 ? "ok" : "danger"}">${fmtMoney(pnl)}</strong></div><div class="metric"><small>Trades hoje</small><strong>${s.portfolio.todayTrades}</strong></div>`;
+      }
+      function renderPositions(items) {
+        openPositionsBadgeEl.textContent = `${items.length} abertas`;
+        positionsEl.innerHTML = items.map((p) => `<tr><td><strong>${p.symbol}</strong><br><span class="muted">${fmtNumber(p.quantity, 6)} qty</span></td><td>${fmtNumber(p.entry_price, 6)}</td><td>${fmtNumber(p.current_price, 6)}</td><td>SL ${fmtNumber(p.stop_loss_price, 6)}<br>TP ${fmtNumber(p.take_profit_price, 6)}<br><span class="muted">Peak ${fmtNumber(p.peak_price || 0, 6)}</span></td><td>${p.trailing_armed ? "Trailing ativo" : "Proteção base"}</td></tr>`).join("") || `<tr><td colspan="5" class="muted">Sem posições abertas.</td></tr>`;
+      }
+      function renderTrades(items) {
+        tradesEl.innerHTML = items.map((t) => `<tr><td><strong>${t.symbol}</strong></td><td>${t.side}</td><td>${t.mode}</td><td>${t.ai_confidence ?? 0}</td><td>${t.exchange_status || t.status}<br><span class="muted">${t.executed_price ? fmtNumber(t.executed_price, 6) : "-"}</span></td><td>${new Date(t.created_at).toLocaleString()}</td></tr>`).join("") || `<tr><td colspan="6" class="muted">Sem ordens registradas.</td></tr>`;
+      }
+      function renderAlerts(items) {
+        alertsEl.innerHTML = items.map((a) => `<div class="alert-card"><strong>${a.event_type}</strong><p style="margin:8px 0 0">${a.message}</p><small class="muted" style="display:block;margin-top:10px">${new Date(a.created_at).toLocaleString()}</small></div>`).join("") || `<div class="alert-card muted">Sem alertas recentes.</div>`;
+      }
+      async function refreshDashboard() {
+        if (!token) return;
+        try {
+          const s = await api("/api/dashboard/summary");
+          renderStats(s);
+          hydrateSettings(s.settings);
+          renderPositions(s.positions);
+          renderTrades(s.trades);
+          renderAlerts(s.alerts);
+          settingsEl.textContent = JSON.stringify(s.settings, null, 2);
+          modeBadgeEl.textContent = `Modo: ${s.settings.mode}`;
+          settingsStatusEl.textContent = s.settings.active ? "Bot ativo" : "Bot parado";
+          updateSession(true, "Desk conectado", "Dados sincronizados com sucesso e interface operacional carregada.");
+        } catch (e) { updateSession(false, "Falha ao carregar o desk", e.message); }
+      }
+    </script>
+  </body>
+</html>

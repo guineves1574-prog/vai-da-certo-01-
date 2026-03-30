@@ -1,0 +1,50 @@
+databases:
+  - name: crypto-bot-db
+    databaseName: crypto_bot
+    user: crypto_bot_user
+    plan: basic-256mb
+
+services:
+  - type: web
+    name: crypto-bot-app
+    runtime: node
+    plan: starter
+    autoDeploy: true
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: APP_BASE_URL
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: crypto-bot-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENCRYPTION_SECRET
+        generateValue: true
+      - key: DEFAULT_MODE
+        value: simulation
+      - key: ANALYSIS_INTERVAL_MINUTES
+        value: 5
+      - key: MAX_CANDIDATES_PER_CYCLE
+        value: 10
+      - key: COINGECKO_BASE_URL
+        value: https://api.coingecko.com/api/v3
+      - key: BINANCE_API_BASE_URL
+        value: https://api.binance.com
+      - key: OPENAI_API_URL
+        value: https://api.openai.com/v1/chat/completions
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
