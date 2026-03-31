@@ -27,9 +27,48 @@ export class RiskService {
       return { approved: false, reason: "Technical score below minimum quality threshold.", quantity: 0 };
     }
 
+    if (signal.strategy === "breakout" && signal.confidence < settings.minConfidence + 3) {
+      return { approved: false, reason: "Breakout setup needs stronger confidence before entry.", quantity: 0 };
+    }
+
+    if (signal.strategy === "trend_pullback" && signal.technicalScore < 20) {
+      return { approved: false, reason: "Trend pullback needs cleaner technical structure.", quantity: 0 };
+    }
+
+    if (signal.strategy === "short_reversal") {
+      if (signal.confidence < settings.minConfidence + 6) {
+        return { approved: false, reason: "Short reversal setup requires extra confidence.", quantity: 0 };
+      }
+      if (signal.technicalScore < 24) {
+        return { approved: false, reason: "Short reversal rejected due to weak reversal quality.", quantity: 0 };
+      }
+    }
+
+    if (signal.strategy === "mean_reversion") {
+      if (signal.confidence < settings.minConfidence + 4) {
+        return { approved: false, reason: "Mean reversion setup requires stronger confirmation.", quantity: 0 };
+      }
+      if (signal.technicalScore < 20) {
+        return { approved: false, reason: "Mean reversion blocked by weak technical context.", quantity: 0 };
+      }
+    }
+
+    if (signal.strategy === "volatility_squeeze") {
+      if (signal.confidence < settings.minConfidence + 2) {
+        return { approved: false, reason: "Volatility squeeze needs more confidence before release.", quantity: 0 };
+      }
+      if (signal.technicalScore < 22) {
+        return { approved: false, reason: "Volatility squeeze blocked by insufficient structure quality.", quantity: 0 };
+      }
+    }
+
     const reasonsText = signal.reasons.join(" ").toLowerCase();
-    if (reasonsText.includes("fake breakout risk: high") || reasonsText.includes("market regime: range")) {
+    if (reasonsText.includes("fake breakout risk: high")) {
       return { approved: false, reason: "Market structure not clean enough for entry.", quantity: 0 };
+    }
+
+    if (!["short_reversal", "mean_reversion", "volatility_squeeze"].includes(signal.strategy) && reasonsText.includes("market regime: range")) {
+      return { approved: false, reason: "Range market blocked for trend-following setups.", quantity: 0 };
     }
 
     if (settings.blacklist.includes(candidate.symbol)) {

@@ -88,7 +88,7 @@ export class OrchestratorService {
       await this.alertsService.notify(
         userId,
         "trade_executed",
-        `Trade executed in ${settings.mode} mode: BUY ${approved.candidate.symbol} at ${executionPrice.toFixed(6)} with technical score ${approved.signal.technicalScore}`
+        `Trade executed in ${settings.mode} mode: BUY ${approved.candidate.symbol} at ${executionPrice.toFixed(6)} using ${approved.signal.strategy} with technical score ${approved.signal.technicalScore}`
       );
 
       return { message: `Executed ${approved.candidate.symbol}`, evaluations };

@@ -202,7 +202,7 @@
                   </div>
                   <span id="openPositionsBadge" class="pill">0 abertas</span>
                 </div>
-                <div class="table"><table><thead><tr><th>Ativo</th><th>Entrada</th><th>Atual</th><th>Proteção</th><th>Status</th></tr></thead><tbody id="positions"></tbody></table></div>
+                <div class="table"><table><thead><tr><th>Ativo</th><th>Estratégia</th><th>Entrada</th><th>Atual</th><th>Proteção</th><th>Status</th></tr></thead><tbody id="positions"></tbody></table></div>
               </section>
 
               <section class="panel">
@@ -212,7 +212,7 @@
                     <h2 class="panel-title">Ordens recentes</h2>
                   </div>
                 </div>
-                <div class="table"><table><thead><tr><th>Ativo</th><th>Lado</th><th>Modo</th><th>IA</th><th>Execução</th><th>Horário</th></tr></thead><tbody id="trades"></tbody></table></div>
+                <div class="table"><table><thead><tr><th>Ativo</th><th>Estratégia</th><th>Lado</th><th>Modo</th><th>IA</th><th>Execução</th><th>Horário</th></tr></thead><tbody id="trades"></tbody></table></div>
               </section>
             </div>
 
@@ -363,12 +363,20 @@
         const pnl = Number(s.portfolio.todayRealizedPnl || 0);
         statsEl.innerHTML = `<div class="metric"><small>Saldo</small><strong>${fmtMoney(s.portfolio.cashBalance)}</strong></div><div class="metric"><small>Exposição</small><strong>${fmtMoney(s.portfolio.exposure)}</strong></div><div class="metric"><small>PnL diário</small><strong class="${pnl >= 0 ? "ok" : "danger"}">${fmtMoney(pnl)}</strong></div><div class="metric"><small>Trades hoje</small><strong>${s.portfolio.todayTrades}</strong></div>`;
       }
+      function strategyLabel(strategy) {
+        if (strategy === "breakout") return "Breakout";
+        if (strategy === "trend_pullback") return "Trend Pullback";
+        if (strategy === "short_reversal") return "Short Reversal";
+        if (strategy === "mean_reversion") return "Mean Reversion";
+        if (strategy === "volatility_squeeze") return "Volatility Squeeze";
+        return "N/A";
+      }
       function renderPositions(items) {
         openPositionsBadgeEl.textContent = `${items.length} abertas`;
-        positionsEl.innerHTML = items.map((p) => `<tr><td><strong>${p.symbol}</strong><br><span class="muted">${fmtNumber(p.quantity, 6)} qty</span></td><td>${fmtNumber(p.entry_price, 6)}</td><td>${fmtNumber(p.current_price, 6)}</td><td>SL ${fmtNumber(p.stop_loss_price, 6)}<br>TP ${fmtNumber(p.take_profit_price, 6)}<br><span class="muted">Peak ${fmtNumber(p.peak_price || 0, 6)}</span></td><td>${p.trailing_armed ? "Trailing ativo" : "Proteção base"}</td></tr>`).join("") || `<tr><td colspan="5" class="muted">Sem posições abertas.</td></tr>`;
+        positionsEl.innerHTML = items.map((p) => `<tr><td><strong>${p.symbol}</strong><br><span class="muted">${fmtNumber(p.quantity, 6)} qty</span></td><td><span class="pill">${strategyLabel(p.strategy)}</span></td><td>${fmtNumber(p.entry_price, 6)}</td><td>${fmtNumber(p.current_price, 6)}</td><td>SL ${fmtNumber(p.stop_loss_price, 6)}<br>TP ${fmtNumber(p.take_profit_price, 6)}<br><span class="muted">Peak ${fmtNumber(p.peak_price || 0, 6)}</span></td><td>${p.trailing_armed ? "Trailing ativo" : "Proteção base"}</td></tr>`).join("") || `<tr><td colspan="6" class="muted">Sem posições abertas.</td></tr>`;
       }
       function renderTrades(items) {
-        tradesEl.innerHTML = items.map((t) => `<tr><td><strong>${t.symbol}</strong></td><td>${t.side}</td><td>${t.mode}</td><td>${t.ai_confidence ?? 0}</td><td>${t.exchange_status || t.status}<br><span class="muted">${t.executed_price ? fmtNumber(t.executed_price, 6) : "-"}</span></td><td>${new Date(t.created_at).toLocaleString()}</td></tr>`).join("") || `<tr><td colspan="6" class="muted">Sem ordens registradas.</td></tr>`;
+        tradesEl.innerHTML = items.map((t) => `<tr><td><strong>${t.symbol}</strong></td><td><span class="pill">${strategyLabel(t.strategy)}</span></td><td>${t.side}</td><td>${t.mode}</td><td>${t.ai_confidence ?? 0}</td><td>${t.exchange_status || t.status}<br><span class="muted">${t.executed_price ? fmtNumber(t.executed_price, 6) : "-"}</span></td><td>${new Date(t.created_at).toLocaleString()}</td></tr>`).join("") || `<tr><td colspan="7" class="muted">Sem ordens registradas.</td></tr>`;
       }
       function renderAlerts(items) {
         alertsEl.innerHTML = items.map((a) => `<div class="alert-card"><strong>${a.event_type}</strong><p style="margin:8px 0 0">${a.message}</p><small class="muted" style="display:block;margin-top:10px">${new Date(a.created_at).toLocaleString()}</small></div>`).join("") || `<div class="alert-card muted">Sem alertas recentes.</div>`;

@@ -75,12 +75,13 @@ export class TradingService {
 
     await query(
       `INSERT INTO trade_orders (
-         user_id, symbol, side, order_type, mode, quantity, price, status, ai_signal, ai_confidence, rationale,
+         user_id, symbol, strategy, side, order_type, mode, quantity, price, status, ai_signal, ai_confidence, rationale,
          exchange_order_id, client_order_id, executed_price, executed_quantity, exchange_status
-       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)`,
+       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)`,
       [
         normalizedRequest.userId,
         normalizedRequest.symbol,
+        normalizedRequest.aiSignal?.strategy ?? null,
         normalizedRequest.side,
         normalizedRequest.orderType,
         normalizedRequest.mode,
@@ -101,12 +102,13 @@ export class TradingService {
     if (normalizedRequest.side === "BUY" && executedQuantity > 0) {
       await query(
         `INSERT INTO positions (
-           user_id, symbol, side, mode, quantity, entry_price, current_price, stop_loss_price, take_profit_price,
+           user_id, symbol, strategy, side, mode, quantity, entry_price, current_price, stop_loss_price, take_profit_price,
            peak_price, ai_confidence, rationale
-         ) VALUES ($1, $2, 'LONG', $3, $4, $5, $5, $5, $6, $7, $8, $9)`,
+         ) VALUES ($1, $2, $3, 'LONG', $4, $5, $6, $6, $7, $8, $9, $10, $11)`,
         [
           normalizedRequest.userId,
           normalizedRequest.symbol,
+          normalizedRequest.aiSignal?.strategy ?? null,
           normalizedRequest.mode,
           executedQuantity,
           executedPrice,

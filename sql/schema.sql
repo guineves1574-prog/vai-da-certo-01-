@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS positions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   symbol TEXT NOT NULL,
+  strategy TEXT,
   side TEXT NOT NULL,
   mode TEXT NOT NULL,
   quantity NUMERIC(18, 8) NOT NULL,
@@ -82,6 +83,7 @@ CREATE TABLE IF NOT EXISTS trade_orders (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   symbol TEXT NOT NULL,
+  strategy TEXT,
   side TEXT NOT NULL,
   order_type TEXT NOT NULL,
   mode TEXT NOT NULL,
@@ -130,10 +132,12 @@ ALTER TABLE bot_settings
   ADD COLUMN IF NOT EXISTS maker_fee_pct NUMERIC(10, 4) NOT NULL DEFAULT 0.1;
 
 ALTER TABLE positions
+  ADD COLUMN IF NOT EXISTS strategy TEXT,
   ADD COLUMN IF NOT EXISTS peak_price NUMERIC(18, 8) NOT NULL DEFAULT 0,
   ADD COLUMN IF NOT EXISTS trailing_armed BOOLEAN NOT NULL DEFAULT FALSE;
 
 ALTER TABLE trade_orders
+  ADD COLUMN IF NOT EXISTS strategy TEXT,
   ADD COLUMN IF NOT EXISTS client_order_id TEXT,
   ADD COLUMN IF NOT EXISTS executed_price NUMERIC(18, 8),
   ADD COLUMN IF NOT EXISTS executed_quantity NUMERIC(18, 8),

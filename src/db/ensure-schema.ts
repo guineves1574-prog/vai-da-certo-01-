@@ -23,12 +23,14 @@ export async function ensureSchemaUpgrades() {
 
   await pool.query(`
     ALTER TABLE positions
+      ADD COLUMN IF NOT EXISTS strategy TEXT,
       ADD COLUMN IF NOT EXISTS peak_price NUMERIC(18, 8) NOT NULL DEFAULT 0,
       ADD COLUMN IF NOT EXISTS trailing_armed BOOLEAN NOT NULL DEFAULT FALSE;
   `);
 
   await pool.query(`
     ALTER TABLE trade_orders
+      ADD COLUMN IF NOT EXISTS strategy TEXT,
       ADD COLUMN IF NOT EXISTS client_order_id TEXT,
       ADD COLUMN IF NOT EXISTS executed_price NUMERIC(18, 8),
       ADD COLUMN IF NOT EXISTS executed_quantity NUMERIC(18, 8),

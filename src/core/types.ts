@@ -1,6 +1,13 @@
 export type TradeMode = "real" | "simulation";
 export type SignalAction = "buy" | "sell" | "hold";
 export type OrderType = "market" | "limit";
+export type TradeStrategy =
+  | "breakout"
+  | "trend_pullback"
+  | "short_reversal"
+  | "mean_reversion"
+  | "volatility_squeeze"
+  | "none";
 
 export interface MarketCandidate {
   symbol: string;
@@ -15,6 +22,7 @@ export interface MarketCandidate {
 
 export interface AISignal {
   action: SignalAction;
+  strategy: TradeStrategy;
   confidence: number;
   technicalScore: number;
   summary: string;
