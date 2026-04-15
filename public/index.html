@@ -1,570 +1,201 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CryptoBot Pro | Test Desk</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <style>
-      :root{--bg:#090611;--bg2:#120a1d;--panel:#14111e;--panel2:#1a1528;--panel3:#201a32;--line:rgba(111,145,255,.12);--text:#f5f7ff;--muted:#96a0c8;--blue:#4da3ff;--blue2:#7cc8ff;--purple:#7b4dff;--purple2:#b46cff;--green:#4ee0a2;--red:#ff7189;--amber:#ffbb66;--shadow:0 24px 80px rgba(0,0,0,.38)}
-      *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#06040b,#0b0714 34%,#090611);color:var(--text)}body{font-family:Inter,sans-serif;overflow-x:hidden}
-      body:before,body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0}
-      body:before{background:linear-gradient(130deg,rgba(77,163,255,.18),transparent 28%),radial-gradient(circle at 82% 12%,rgba(180,108,255,.18),transparent 20%),radial-gradient(circle at 16% 84%,rgba(77,163,255,.12),transparent 24%),url("https://images.unsplash.com/photo-1640161704729-cbe966a08476?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;opacity:.22;filter:saturate(1.1)}
-      body:after{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='900' viewBox='0 0 1400 900'%3E%3Cg fill='none' stroke='rgba(123,77,255,0.18)' stroke-width='1.2'%3E%3Cpath d='M0 740c82-24 140-118 226-116 86 2 122 114 208 118 86 4 126-104 226-120 100-16 142 48 232 38 90-10 164-56 274-60'/%3E%3Cpath d='M0 664c96-20 152-94 240-90 88 4 112 80 204 82 92 2 150-92 246-102 96-10 132 30 220 26 88-4 156-34 250-30'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(77,163,255,0.22)' stroke-width='2'%3E%3Cpath d='M114 496v-126m-10 26h20m-20 68h20'/%3E%3Cpath d='M214 430v-160m-10 28h20m-20 82h20'/%3E%3Cpath d='M316 536v-104m-10 18h20m-20 58h20'/%3E%3Cpath d='M416 398v-176m-10 28h20m-20 92h20'/%3E%3Cpath d='M516 520v-120m-10 20h20m-20 64h20'/%3E%3Cpath d='M616 368v-142m-10 24h20m-20 72h20'/%3E%3Cpath d='M716 462v-110m-10 18h20m-20 58h20'/%3E%3Cpath d='M818 342v-166m-10 28h20m-20 84h20'/%3E%3C/g%3E%3C/svg%3E") center/cover;opacity:.42}
-      .material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 300,"GRAD" 0,"opsz" 24}.hidden{display:none!important}.app-bg{position:relative;z-index:1}
-      .auth-screen{min-height:100vh;display:grid;place-items:center;padding:28px}.auth-shell{width:min(1220px,100%);display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
-      .hero-card,.auth-card,.side-card,.panel,.stat{background:linear-gradient(180deg,rgba(20,17,30,.9),rgba(14,11,22,.92));border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(18px);border-radius:30px}
-      .hero-card{padding:34px;position:relative;overflow:hidden}.hero-card:before{content:"";position:absolute;inset:auto -12% -20% auto;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(123,77,255,.28),transparent 62%);filter:blur(14px)}
-      .badge,.chip,.tab-button,.strategy-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px}.badge,.chip{padding:9px 14px;background:rgba(123,77,255,.14);color:#d8caff;font-size:.74rem;text-transform:uppercase;letter-spacing:.18em}
-      h1,h2,h3,p{margin:0}.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.22em;color:var(--muted)}.title{font-family:"Space Grotesk",sans-serif;letter-spacing:-.06em}.hero-title{font-size:clamp(3rem,5vw,5.6rem);line-height:.94;max-width:9ch;margin-top:18px}.accent{background:linear-gradient(135deg,var(--blue2),var(--purple2));-webkit-background-clip:text;background-clip:text;color:transparent}.hero-copy{margin-top:18px;max-width:58ch;color:var(--muted);line-height:1.8}
-      .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}.stat{padding:16px 18px;background:linear-gradient(180deg,rgba(26,21,40,.88),rgba(18,14,28,.9))}.stat small{display:block;color:var(--muted);text-transform:uppercase;letter-spacing:.16em;font-size:.68rem;margin-bottom:8px}.stat strong{font-family:"Space Grotesk",sans-serif;font-size:1.1rem}
-      .chart-box{margin-top:24px;height:220px;border-radius:24px;background:linear-gradient(180deg,rgba(7,7,13,.74),rgba(10,10,18,.42)),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='500' viewBox='0 0 900 500'%3E%3Crect width='900' height='500' fill='%23080712'/%3E%3Cpath d='M0 346c92-28 130-122 220-116s110 110 196 112c86 2 116-88 210-106 94-18 138 44 224 34 86-10 138-54 240-48' stroke='rgba(77,163,255,0.78)' stroke-width='5' fill='none'/%3E%3Cpath d='M0 406c92-10 132-48 212-28s98 78 192 78c94 0 124-88 214-102 90-14 124 22 208 20 84-2 116-18 184-14' stroke='rgba(180,108,255,0.28)' stroke-width='3' fill='none'/%3E%3Cg fill='none' stroke='rgba(124,198,255,0.34)' stroke-width='2'%3E%3Cpath d='M110 304v-128m-10 20h20m-20 64h20'/%3E%3Cpath d='M218 250v-160m-10 24h20m-20 84h20'/%3E%3Cpath d='M328 342v-100m-10 16h20m-20 58h20'/%3E%3Cpath d='M440 212v-178m-10 28h20m-20 90h20'/%3E%3Cpath d='M548 316v-120m-10 18h20m-20 64h20'/%3E%3C/svg%3E") center/cover;border:1px solid rgba(123,77,255,.12)}
-      .auth-card{padding:28px;display:grid;gap:18px;background:linear-gradient(180deg,rgba(19,15,30,.96),rgba(11,9,19,.94))}.toggle-row,.button-row,.top-row,.sidebar-brand,.profile-badge{display:flex;align-items:center}.toggle-row,.button-row{gap:10px;flex-wrap:wrap}.sidebar-brand,.profile-badge{gap:12px}
-      .toggle{padding:10px 16px;border-radius:999px;border:1px solid rgba(123,77,255,.14);background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer;transition:.2s ease}.toggle.active,.toggle:hover{background:linear-gradient(135deg,rgba(77,163,255,.18),rgba(123,77,255,.18));color:var(--text)}
-      .grid2,.settings-grid,.test-grid,.summary-grid{display:grid;gap:14px}.grid2{grid-template-columns:repeat(2,1fr)}.summary-grid{grid-template-columns:repeat(4,1fr)}.test-grid{grid-template-columns:1.2fr .8fr}.settings-grid{grid-template-columns:repeat(4,1fr)}
-      .field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}label{color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.16em}
-      input,select,textarea,button{width:100%;font:inherit}input,select,textarea{padding:14px 16px;border-radius:18px;border:1px solid rgba(123,77,255,.12);background:rgba(5,5,10,.7);color:var(--text);outline:none;transition:.2s ease}input:focus,select:focus,textarea:focus{border-color:rgba(77,163,255,.46);box-shadow:0 0 0 6px rgba(77,163,255,.08)}textarea{min-height:86px;resize:vertical}
-      button{position:relative;overflow:hidden;min-height:48px;border:none;border-radius:16px;cursor:pointer;font-weight:800;letter-spacing:.02em;color:#081425;background:linear-gradient(135deg,var(--blue),var(--purple2));box-shadow:0 14px 30px rgba(72,106,255,.24);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}button:before{content:"";position:absolute;inset:-120% auto auto -25%;width:36%;height:340%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:rotate(18deg);transition:transform .45s ease}button:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 18px 40px rgba(89,95,255,.34)}button:hover:before{transform:translateX(260%) rotate(18deg)}button.secondary{color:var(--text);background:linear-gradient(135deg,rgba(77,163,255,.12),rgba(123,77,255,.16));border:1px solid rgba(123,77,255,.14);box-shadow:none}button.ghost{color:var(--blue2);background:transparent;border:1px solid rgba(77,163,255,.18);box-shadow:none}
-      .auth-message{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.03);color:var(--muted)}.app-shell{padding:18px}.app-frame{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;max-width:1560px;margin:0 auto}.sidebar{position:sticky;top:18px;height:calc(100vh - 36px);padding:22px;border-radius:30px;background:linear-gradient(180deg,rgba(16,13,25,.96),rgba(10,8,17,.96));border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px}
-      .logo{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--purple2));font-family:"Space Grotesk",sans-serif;font-weight:800;color:#07131f}.nav{display:grid;gap:10px}.tab-button{justify-content:flex-start;padding:14px 16px;border-radius:18px;background:transparent;color:var(--muted);border:1px solid transparent}.tab-button.active,.tab-button:hover{background:linear-gradient(135deg,rgba(77,163,255,.12),rgba(123,77,255,.14));color:var(--text);transform:translateX(4px)}
-      .side-card{padding:18px;background:linear-gradient(180deg,rgba(26,20,40,.92),rgba(16,13,24,.9))}.app-main{display:grid;gap:18px}.top-row{justify-content:space-between;gap:12px}.welcome{padding:26px;border-radius:30px;background:linear-gradient(140deg,rgba(77,163,255,.16),rgba(123,77,255,.08) 44%,rgba(15,12,24,.96) 92%),linear-gradient(180deg,rgba(18,15,28,.96),rgba(9,8,16,.96));border:1px solid var(--line);box-shadow:var(--shadow)}.welcome h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(2rem,3vw,3.6rem);letter-spacing:-.06em;line-height:1}.welcome p{margin-top:14px;max-width:62ch}
-      .section{display:none}.section.active{display:grid;gap:18px}.panel{padding:22px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.panel-title{font-family:"Space Grotesk",sans-serif;font-size:1.22rem;letter-spacing:-.04em}.table-wrap{overflow:auto}table{width:100%;min-width:780px;border-collapse:separate;border-spacing:0 10px}th{padding:0 14px 8px;text-align:left;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;font-weight:600}td{padding:16px 14px;background:rgba(255,255,255,.03)}td:first-child{border-radius:16px 0 0 16px}td:last-child{border-radius:0 16px 16px 0}.code{padding:18px;border-radius:20px;background:rgba(5,5,12,.86);border:1px solid rgba(123,77,255,.12);white-space:pre-wrap;word-break:break-word;color:#d7ddff;font-family:Consolas,monospace;font-size:.86rem}.alerts{display:grid;gap:12px}.alert-card{padding:16px;border-radius:18px;background:linear-gradient(180deg,rgba(28,21,42,.9),rgba(14,11,23,.9));border:1px solid rgba(123,77,255,.1)}.strategy-pill{padding:8px 12px;background:rgba(123,77,255,.14);color:#dccbff;font-size:.76rem}.ok{color:var(--green)}.danger{color:var(--red)}.muted{color:var(--muted)}
-      .chart-grid,.strategy-metrics{display:grid;gap:18px}.chart-grid{grid-template-columns:1.15fr .85fr}.equity-chart{height:260px;padding:16px;border-radius:24px;background:linear-gradient(180deg,rgba(10,10,18,.8),rgba(18,15,30,.86));border:1px solid rgba(123,77,255,.12);display:flex;align-items:flex-end;gap:8px;overflow:hidden}.equity-bar{flex:1;min-width:20px;border-radius:14px 14px 6px 6px;background:linear-gradient(180deg,var(--blue2),var(--purple2));position:relative;box-shadow:0 10px 20px rgba(123,77,255,.18)}.equity-bar span{position:absolute;left:50%;bottom:-26px;transform:translateX(-50%);font-size:.68rem;color:var(--muted);white-space:nowrap}.strategy-metrics{grid-template-columns:repeat(2,1fr)}.metric-card{padding:16px;border-radius:22px;background:linear-gradient(180deg,rgba(26,21,40,.82),rgba(14,11,23,.86));border:1px solid rgba(123,77,255,.1)}.metric-card h4{margin:0;font-family:"Space Grotesk",sans-serif;font-size:1rem}.metric-row{display:flex;justify-content:space-between;gap:12px;margin-top:10px;color:var(--muted);font-size:.92rem}
-      @media (max-width:1280px){.auth-shell,.app-frame,.test-grid{grid-template-columns:1fr}.sidebar{position:static;height:auto}.settings-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:900px){.auth-screen,.app-shell{padding:12px}.hero-grid,.grid2,.summary-grid,.settings-grid{grid-template-columns:1fr}.hero-card,.auth-card,.welcome,.panel,.sidebar{padding:18px}.top-row,.sidebar-brand,.profile-badge{flex-wrap:wrap}}
-    </style>
-  </head>
-  <body>
-    <div class="app-bg">
-      <section id="authScreen" class="auth-screen">
-        <div class="auth-shell">
-          <div class="hero-card">
-            <div class="badge"><span class="material-symbols-outlined">auto_awesome</span>AI Trading SaaS</div>
-            <h1 class="title hero-title">Teste seu <span class="accent">bot trader</span> com uma interface realmente profissional.</h1>
-            <p class="hero-copy">Tela de login separada, dashboard funcional para área de testes, comandos do bot, gestão de risco, Binance, histórico, alertas e backtest em um visual preto, azul e roxo com atmosfera de desk quantitativo.</p>
-            <div class="hero-grid">
-              <div class="stat"><small>Estratégias</small><strong>5 setups ativos</strong></div>
-              <div class="stat"><small>Execução</small><strong>Simulation e Real</strong></div>
-              <div class="stat"><small>Proteção</small><strong>SL, TP, trailing</strong></div>
-            </div>
-            <div class="chart-box"></div>
-          </div>
-
-          <div class="auth-card">
-            <div>
-              <p class="eyebrow">Autenticação</p>
-              <h2 class="title" style="font-size:2rem;margin-top:8px">Entrar no Test Desk</h2>
-              <p style="margin-top:10px">Use login ou cadastro para liberar a área de testes do bot.</p>
-            </div>
-            <div class="toggle-row">
-              <button id="registerToggle" class="secondary" type="button" onclick="setAuthMode('register')">Criar conta</button>
-              <button id="loginToggle" class="ghost" type="button" onclick="setAuthMode('login')">Entrar</button>
-            </div>
-            <div class="grid2">
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" placeholder="voce@dominio.com" />
-              </div>
-              <div id="nameField" class="field">
-                <label for="name">Nome</label>
-                <input id="name" placeholder="Seu nome" />
-              </div>
-            </div>
-            <div class="field">
-              <label for="password">Senha</label>
-              <input id="password" type="password" placeholder="Sua senha" />
-            </div>
-            <div class="button-row">
-              <button id="authSubmit" type="button" onclick="submitAuth()">Criar conta</button>
-              <button class="secondary" type="button" onclick="fillDemo()">Usar demo</button>
-            </div>
-            <div id="authMessage" class="auth-message">Pronto para autenticar o operador.</div>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CryptoBot Pro</title>
+  <style>
+    :root{--bg:#0b1020;--bg2:#121932;--panel:#16213f;--line:#2a3760;--text:#eef3ff;--muted:#9eb0d7;--blue:#4f8cff;--green:#3dd598;--red:#ff6b7a}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:linear-gradient(rgba(11,16,32,.95),rgba(11,16,32,.97)),url("https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1600&q=80") center/cover fixed;color:var(--text);font-family:Arial,sans-serif}
+    .hidden{display:none!important}.page{width:min(1180px,calc(100% - 32px));margin:0 auto}.panel,.status,.summary{background:rgba(18,25,50,.95);border:1px solid var(--line);border-radius:16px}.panel{padding:20px}.stack,.nav,.main,.section,.metrics,.alerts{display:grid;gap:14px}.grid2,.grid4,.filters,.settings{display:grid;gap:14px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}.filters,.settings{grid-template-columns:repeat(3,minmax(0,1fr))}
+    label{font-size:.86rem;color:var(--muted)}input,select,textarea,button{width:100%;font:inherit}input,select,textarea{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0e1630;color:var(--text)}textarea{min-height:88px;resize:vertical}.full{grid-column:1/-1}
+    button{border:none;border-radius:12px;min-height:44px;cursor:pointer;background:var(--blue);color:#fff;font-weight:700}.secondary{background:#22325f}.ghost{background:transparent;border:1px solid var(--line)}.button-row{display:flex;gap:10px;flex-wrap:wrap}.button-row>*{flex:1}
+    .subtitle,.muted{color:var(--muted)}.message,.code,.chart{padding:14px;border-radius:12px;background:#0d1530;border:1px solid var(--line)}.app{padding:18px 0 28px}.shell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:18px}.sidebar{padding:18px;position:sticky;top:18px;align-self:start}.status{padding:14px}.dot{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,107,122,.14);color:var(--red);font-size:.84rem;font-weight:700}
+    .nav button{text-align:left}.nav .active{background:#335fc0}.header{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.chip,.tag,.meta{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;font-size:.84rem}.chip,.tag{background:rgba(79,140,255,.14);color:#9fc3ff}.summary{padding:16px}.summary small{display:block;color:var(--muted);margin-bottom:8px}.summary strong{font-size:1.2rem}.ok{color:var(--green)}.danger{color:var(--red)}
+    .section{display:none}.section.active{display:grid}.metric{padding:14px;border-radius:12px;background:#0d1530;border:1px solid var(--line)}.metric-row{display:flex;justify-content:space-between;gap:10px;margin-top:8px}.progress{height:8px;margin-top:10px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}.progress span{display:block;height:100%;background:var(--blue)}
+    .equity{min-height:220px;display:flex;align-items:flex-end;gap:8px}.bar{flex:1;min-width:20px;background:linear-gradient(180deg,#7bb1ff,var(--blue));border-radius:10px 10px 4px 4px;position:relative}.bar.neg{background:linear-gradient(180deg,#ff99a6,var(--red))}.bar span{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);font-size:.72rem;color:var(--muted)}
+    .meta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.meta{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted)}.table-wrap{overflow:auto}table{width:100%;min-width:760px;border-collapse:collapse}th,td{padding:12px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}th{color:var(--muted);font-size:.82rem}.alert{padding:14px;border-radius:12px;background:#0d1530;border:1px solid var(--line)}
+    @media (max-width:980px){.shell,.grid2,.grid4,.filters,.settings{grid-template-columns:1fr}.sidebar{position:static}.button-row>*{flex:unset;width:100%}}
+  </style>
+</head>
+<body>
+  <section id="appShell" class="app">
+    <div class="page shell">
+      <aside class="panel sidebar">
+        <div>
+          <h2 style="margin:0">CryptoBot Pro</h2>
+          <p class="muted" style="margin:6px 0 0">App do bot</p>
         </div>
-      </section>
-
-      <section id="appShell" class="app-shell hidden">
-        <div class="app-frame">
-          <aside class="sidebar">
-            <div class="sidebar-brand">
-              <div class="logo">CB</div>
-              <div>
-                <div class="eyebrow">CryptoBot Pro</div>
-                <h2 class="title" style="font-size:1.5rem">Test Desk</h2>
-              </div>
-            </div>
-            <div class="side-card">
-              <div class="profile-badge">
-                <span id="sessionDot" class="strategy-pill" style="padding:8px 10px">Offline</span>
-                <div>
-                  <div class="eyebrow">Sessão</div>
-                  <strong id="sessionLabel">Desconectado</strong>
-                </div>
-              </div>
-              <p id="statusText" style="margin-top:12px">Faça login para carregar o bot.</p>
-            </div>
-            <nav class="nav">
-              <button class="tab-button active" type="button" data-section-target="overview" onclick="showSection('overview', this)"><span class="material-symbols-outlined">space_dashboard</span>Overview</button>
-              <button class="tab-button" type="button" data-section-target="testing" onclick="showSection('testing', this)"><span class="material-symbols-outlined">science</span>Área de testes</button>
-              <button class="tab-button" type="button" data-section-target="settings" onclick="showSection('settings', this)"><span class="material-symbols-outlined">tune</span>Configuração</button>
-              <button class="tab-button" type="button" data-section-target="history" onclick="showSection('history', this)"><span class="material-symbols-outlined">candlestick_chart</span>Ordens e posições</button>
-              <button class="tab-button" type="button" data-section-target="alerts" onclick="showSection('alerts', this)"><span class="material-symbols-outlined">notifications_active</span>Alertas</button>
-            </nav>
-            <div class="side-card">
-              <div class="eyebrow">Atalhos</div>
-              <div class="button-row" style="margin-top:12px">
-                <button type="button" onclick="refreshDashboard()">Atualizar</button>
-                <button class="ghost" type="button" onclick="logout()">Sair</button>
-              </div>
-            </div>
-          </aside>
-
-          <main class="app-main">
-            <section class="welcome">
-              <div class="top-row">
-                <div>
-                  <div class="eyebrow">Ambiente de testes</div>
-                  <h2>Controle visual premium para seu bot trader.</h2>
-                </div>
-                <span id="modeBadge" class="chip">Modo: simulation</span>
-              </div>
-              <p>Este painel foi redesenhado para separar autenticação e operação, deixando a área de testes mais clara para validar estratégia, risco, credenciais, backtests e decisões do bot.</p>
-            </section>
-
-            <section id="overview" class="section active">
-              <div id="stats" class="summary-grid"></div>
-              <div class="chart-grid">
-                <div class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <p class="eyebrow">Equity curve</p>
-                      <h3 class="panel-title">Evolução da banca</h3>
-                    </div>
-                  </div>
-                  <div id="equityChart" class="equity-chart"></div>
-                </div>
-                <div class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <p class="eyebrow">By strategy</p>
-                      <h3 class="panel-title">Performance por setup</h3>
-                    </div>
-                  </div>
-                  <div id="strategyMetrics" class="strategy-metrics"></div>
-                </div>
-              </div>
-              <div class="test-grid">
-                <div class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <p class="eyebrow">Snapshot</p>
-                      <h3 class="panel-title">Resumo técnico do bot</h3>
-                    </div>
-                  </div>
-                  <div id="settings" class="code">Sem dados carregados.</div>
-                </div>
-                <div class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <p class="eyebrow">Quick actions</p>
-                      <h3 class="panel-title">Comandos rápidos</h3>
-                    </div>
-                  </div>
-                  <div class="button-row">
-                    <button type="button" onclick="runBot()">Executar ciclo</button>
-                    <button class="secondary" type="button" onclick="startBot()">Iniciar bot</button>
-                    <button class="ghost" type="button" onclick="stopBot()">Parar bot</button>
-                    <button class="ghost" type="button" onclick="runBacktest()">Rodar backtest</button>
-                  </div>
-                  <div id="backtest" class="code" style="margin-top:18px">Nenhum backtest executado.</div>
-                </div>
-              </div>
-            </section>
-
-            <section id="testing" class="section">
-              <div class="test-grid">
-                <div class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <p class="eyebrow">Testing desk</p>
-                      <h3 class="panel-title">Simulação e execução manual</h3>
-                    </div>
-                    <span id="settingsStatus" class="chip">Aguardando ajustes</span>
-                  </div>
-                  <div class="button-row">
-                    <button type="button" onclick="runBot()">Run once</button>
-                    <button class="secondary" type="button" onclick="runBacktest()">Backtest BTCUSDT</button>
-                    <button class="ghost" type="button" onclick="refreshDashboard()">Recarregar dados</button>
-                  </div>
-                  <p style="margin-top:16px">Use esta seção para validar como o bot reage antes de ligar a automação contínua. O fluxo ideal continua sendo: configurar, testar em simulação, revisar ordens e só depois considerar modo real.</p>
-                </div>
-                <div class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <p class="eyebrow">Credenciais Binance</p>
-                      <h3 class="panel-title">Exchange</h3>
-                    </div>
-                    <span id="credentialsStatus" class="chip">Não configurado</span>
-                  </div>
-                  <div class="field">
-                    <label for="binanceApiKey">API Key</label>
-                    <input id="binanceApiKey" placeholder="Cole sua API Key" />
-                  </div>
-                  <div class="field">
-                    <label for="binanceApiSecret">API Secret</label>
-                    <input id="binanceApiSecret" type="password" placeholder="Cole sua API Secret" />
-                  </div>
-                  <div class="button-row" style="margin-top:16px">
-                    <button type="button" onclick="saveBinanceCredentials()">Salvar credenciais</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section id="settingsSection" class="section">
-              <div class="panel">
-                <div class="panel-head">
-                  <div>
-                    <p class="eyebrow">Risk engine</p>
-                    <h3 class="panel-title">Configuração completa</h3>
-                  </div>
-                </div>
-                <div class="settings-grid">
-                  <div class="field"><label for="mode">Modo</label><select id="mode"><option value="simulation">Simulation</option><option value="real">Real</option></select></div>
-                  <div class="field"><label for="analysisIntervalMinutes">Intervalo</label><input id="analysisIntervalMinutes" type="number" min="1" value="5" /></div>
-                  <div class="field"><label for="baseTradeAmount">Valor por trade</label><input id="baseTradeAmount" type="number" min="1" step="0.01" value="100" /></div>
-                  <div class="field"><label for="maxOpenTrades">Máx aberto</label><input id="maxOpenTrades" type="number" min="1" value="3" /></div>
-                  <div class="field"><label for="stopLossPct">Stop loss %</label><input id="stopLossPct" type="number" min="0.1" step="0.1" value="2.5" /></div>
-                  <div class="field"><label for="takeProfitPct">Take profit %</label><input id="takeProfitPct" type="number" min="0.1" step="0.1" value="4.5" /></div>
-                  <div class="field"><label for="trailingStopPct">Trailing %</label><input id="trailingStopPct" type="number" min="0.1" step="0.1" value="1.5" /></div>
-                  <div class="field"><label for="breakEvenTriggerPct">Break-even %</label><input id="breakEvenTriggerPct" type="number" min="0.1" step="0.1" value="1" /></div>
-                  <div class="field"><label for="maxDailyLossPct">Perda diária %</label><input id="maxDailyLossPct" type="number" min="0.1" step="0.1" value="2" /></div>
-                  <div class="field"><label for="maxPositionSizePct">Exposição %</label><input id="maxPositionSizePct" type="number" min="0.1" step="0.1" value="10" /></div>
-                  <div class="field"><label for="minConfidence">Confiança mínima</label><input id="minConfidence" type="number" min="0" max="100" value="72" /></div>
-                  <div class="field"><label for="maxDailyTrades">Máx trades dia</label><input id="maxDailyTrades" type="number" min="1" value="8" /></div>
-                  <div class="field"><label for="cooldownMinutes">Cooldown</label><input id="cooldownMinutes" type="number" min="1" value="30" /></div>
-                  <div class="field"><label for="lowMarketCapLimit">Market cap máx</label><input id="lowMarketCapLimit" type="number" min="1" step="1" value="500000000" /></div>
-                  <div class="field"><label for="minVolumeGrowthPct">Volume growth min %</label><input id="minVolumeGrowthPct" type="number" min="0" step="0.1" value="15" /></div>
-                  <div class="field"><label for="maxSpreadPct">Spread max %</label><input id="maxSpreadPct" type="number" min="0.01" step="0.01" value="0.2" /></div>
-                  <div class="field"><label for="slippagePct">Slippage %</label><input id="slippagePct" type="number" min="0.01" step="0.01" value="0.2" /></div>
-                  <div class="field"><label for="takerFeePct">Taxa taker %</label><input id="takerFeePct" type="number" min="0.01" step="0.01" value="0.1" /></div>
-                  <div class="field"><label for="makerFeePct">Taxa maker %</label><input id="makerFeePct" type="number" min="0.01" step="0.01" value="0.1" /></div>
-                  <div class="field"><label for="quoteAsset">Quote asset</label><input id="quoteAsset" value="USDT" /></div>
-                  <div class="field full"><label for="whitelist">Whitelist</label><textarea id="whitelist" placeholder="BTCUSDT,ETHUSDT,SOLUSDT"></textarea></div>
-                  <div class="field full"><label for="blacklist">Blacklist</label><textarea id="blacklist" placeholder="Ativos bloqueados"></textarea></div>
-                </div>
-                <div class="button-row" style="margin-top:18px">
-                  <button type="button" onclick="saveSettings()">Salvar configuração</button>
-                  <button class="secondary" type="button" onclick="startBot()">Iniciar bot</button>
-                  <button class="ghost" type="button" onclick="stopBot()">Parar bot</button>
-                </div>
-              </div>
-            </section>
-
-            <section id="history" class="section">
-              <div class="panel">
-                <div class="panel-head">
-                  <div>
-                    <p class="eyebrow">Open positions</p>
-                    <h3 class="panel-title">Posições abertas</h3>
-                  </div>
-                  <span id="openPositionsBadge" class="chip">0 abertas</span>
-                </div>
-                <div class="table-wrap">
-                  <table>
-                    <thead><tr><th>Ativo</th><th>Estratégia</th><th>Entrada</th><th>Atual</th><th>Proteção</th><th>Status</th></tr></thead>
-                    <tbody id="positions"></tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="panel">
-                <div class="panel-head">
-                  <div>
-                    <p class="eyebrow">Trade log</p>
-                    <h3 class="panel-title">Ordens recentes</h3>
-                  </div>
-                </div>
-                <div class="table-wrap">
-                  <table>
-                    <thead><tr><th>Ativo</th><th>Estratégia</th><th>Lado</th><th>Modo</th><th>IA</th><th>Execução</th><th>Horário</th></tr></thead>
-                    <tbody id="trades"></tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-
-            <section id="alertsSection" class="section">
-              <div class="panel">
-                <div class="panel-head">
-                  <div>
-                    <p class="eyebrow">Live feed</p>
-                    <h3 class="panel-title">Alertas e eventos</h3>
-                  </div>
-                </div>
-                <div id="alerts" class="alerts"></div>
-              </div>
-            </section>
-          </main>
+        <div class="status">
+          <span id="sessionDot" class="dot">Offline</span>
+          <p><strong id="sessionLabel">Desconectado</strong></p>
+          <p id="statusText" class="muted">A autenticação será feita fora desta tela. Este app mostra apenas a operação do bot.</p>
         </div>
-      </section>
+        <nav class="nav">
+          <button class="active" type="button" onclick="showSection('visaoGeral', this)">Visao geral</button>
+          <button type="button" onclick="showSection('testes', this)">Testes</button>
+          <button type="button" onclick="showSection('configuracoes', this)">Configuracoes</button>
+          <button type="button" onclick="showSection('historico', this)">Ordens e posicoes</button>
+          <button type="button" onclick="showSection('alertas', this)">Alertas</button>
+        </nav>
+        <div class="stack">
+          <div><label for="autoRefreshEnabled">Atualizacao automatica</label><select id="autoRefreshEnabled"><option value="off">Desligada</option><option value="on">Ligada</option></select></div>
+          <div><label for="refreshInterval">Intervalo</label><select id="refreshInterval"><option value="15000">15 segundos</option><option value="30000" selected>30 segundos</option><option value="60000">1 minuto</option><option value="180000">3 minutos</option></select></div>
+          <div id="lastRefreshText" class="muted">Sem atualizacao recente.</div>
+          <div class="button-row"><button type="button" onclick="refreshDashboard()">Atualizar agora</button><button class="ghost" type="button" onclick="logout()">Sair</button></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="panel">
+          <div class="header">
+            <div><h2 style="margin:0">Painel do bot</h2><p class="subtitle" style="margin:6px 0 0">Tudo separado por area para ficar mais facil de operar.</p></div>
+            <div id="modeBadge" class="chip">Modo: simulation</div>
+          </div>
+          <div id="accessMessage" class="message" style="margin-top:14px">Conecte este app com um token JWT válido no navegador para carregar os dados do bot.</div>
+        </section>
+
+        <section id="visaoGeral" class="section active">
+          <div id="stats" class="grid4"></div>
+          <div class="grid2">
+            <div class="panel">
+              <h3 style="margin-top:0">Curva da banca</h3>
+              <p id="equityLegend" class="subtitle">Sem historico suficiente.</p>
+              <div class="chart"><div id="equityChart" class="equity"></div></div>
+            </div>
+            <div class="panel">
+              <h3 style="margin-top:0">Estrategias</h3>
+              <p class="subtitle">Performance por setup</p>
+              <div id="strategyMetrics" class="metrics"></div>
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="panel"><h3 style="margin-top:0">Resumo do bot</h3><p class="subtitle">Configuracao atual</p><div id="settings" class="code">Sem dados carregados.</div></div>
+            <div class="panel">
+              <h3 style="margin-top:0">Acoes rapidas</h3>
+              <p class="subtitle">Comandos principais</p>
+              <div class="button-row"><button type="button" onclick="runBot()">Executar ciclo</button><button class="secondary" type="button" onclick="startBot()">Iniciar bot</button><button class="ghost" type="button" onclick="stopBot()">Parar bot</button></div>
+              <div id="backtest" class="code" style="margin-top:14px">Nenhum backtest executado.</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="testes" class="section">
+          <div class="grid2">
+            <div class="panel">
+              <div class="header"><div><h3 style="margin:0">Area de testes</h3><p class="subtitle" style="margin:6px 0 0">Validacao em simulacao ou execucao manual</p></div><span id="settingsStatus" class="chip">Aguardando ajuste</span></div>
+              <div class="button-row"><button type="button" onclick="runBot()">Executar ciclo</button><button class="secondary" type="button" onclick="runBacktest()">Rodar backtest</button><button class="ghost" type="button" onclick="refreshDashboard()">Atualizar dados</button></div>
+            </div>
+            <div class="panel">
+              <div class="header"><div><h3 style="margin:0">Credenciais da Binance</h3><p class="subtitle" style="margin:6px 0 0">Salve as chaves da exchange</p></div><span id="credentialsStatus" class="chip">Nao configurado</span></div>
+              <div class="stack">
+                <div><label for="binanceApiKey">API Key</label><input id="binanceApiKey" placeholder="Cole sua API Key" /></div>
+                <div><label for="binanceApiSecret">API Secret</label><input id="binanceApiSecret" type="password" placeholder="Cole sua API Secret" /></div>
+                <button type="button" onclick="saveBinanceCredentials()">Salvar credenciais</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="configuracoes" class="section">
+          <div class="panel">
+            <h3 style="margin-top:0">Configuracoes do bot</h3>
+            <p class="subtitle">Risco, operacao e filtros</p>
+            <div class="settings">
+              <div><label for="mode">Modo</label><select id="mode"><option value="simulation">Simulacao</option><option value="real">Real</option></select></div>
+              <div><label for="analysisIntervalMinutes">Intervalo de analise</label><input id="analysisIntervalMinutes" type="number" min="1" /></div>
+              <div><label for="baseTradeAmount">Valor por operacao</label><input id="baseTradeAmount" type="number" min="1" step="0.01" /></div>
+              <div><label for="maxOpenTrades">Maximo de operacoes abertas</label><input id="maxOpenTrades" type="number" min="1" /></div>
+              <div><label for="stopLossPct">Stop loss %</label><input id="stopLossPct" type="number" min="0.1" step="0.1" /></div>
+              <div><label for="takeProfitPct">Take profit %</label><input id="takeProfitPct" type="number" min="0.1" step="0.1" /></div>
+              <div><label for="trailingStopPct">Trailing stop %</label><input id="trailingStopPct" type="number" min="0.1" step="0.1" /></div>
+              <div><label for="breakEvenTriggerPct">Break even %</label><input id="breakEvenTriggerPct" type="number" min="0.1" step="0.1" /></div>
+              <div><label for="maxDailyLossPct">Perda diaria maxima %</label><input id="maxDailyLossPct" type="number" min="0.1" step="0.1" /></div>
+              <div><label for="maxPositionSizePct">Exposicao maxima %</label><input id="maxPositionSizePct" type="number" min="0.1" step="0.1" /></div>
+              <div><label for="minConfidence">Confianca minima</label><input id="minConfidence" type="number" min="0" max="100" /></div>
+              <div><label for="maxDailyTrades">Maximo de trades por dia</label><input id="maxDailyTrades" type="number" min="1" /></div>
+              <div><label for="cooldownMinutes">Cooldown em minutos</label><input id="cooldownMinutes" type="number" min="1" /></div>
+              <div><label for="lowMarketCapLimit">Market cap maxima</label><input id="lowMarketCapLimit" type="number" min="1" step="1" /></div>
+              <div><label for="minVolumeGrowthPct">Volume minimo %</label><input id="minVolumeGrowthPct" type="number" min="0" step="0.1" /></div>
+              <div><label for="maxSpreadPct">Spread maximo %</label><input id="maxSpreadPct" type="number" min="0.01" step="0.01" /></div>
+              <div><label for="slippagePct">Slippage %</label><input id="slippagePct" type="number" min="0.01" step="0.01" /></div>
+              <div><label for="takerFeePct">Taxa taker %</label><input id="takerFeePct" type="number" min="0.01" step="0.01" /></div>
+              <div><label for="makerFeePct">Taxa maker %</label><input id="makerFeePct" type="number" min="0.01" step="0.01" /></div>
+              <div><label for="quoteAsset">Ativo de cotacao</label><input id="quoteAsset" /></div>
+              <div class="full"><label for="whitelist">Whitelist</label><textarea id="whitelist" placeholder="BTCUSDT,ETHUSDT,SOLUSDT"></textarea></div>
+              <div class="full"><label for="blacklist">Blacklist</label><textarea id="blacklist" placeholder="Ativos bloqueados"></textarea></div>
+            </div>
+            <div class="button-row" style="margin-top:16px"><button type="button" onclick="saveSettings()">Salvar configuracoes</button><button class="secondary" type="button" onclick="startBot()">Iniciar bot</button><button class="ghost" type="button" onclick="stopBot()">Parar bot</button></div>
+          </div>
+        </section>
+
+        <section id="historico" class="section">
+          <div class="panel">
+            <div class="header"><div><h3 style="margin:0">Filtros do historico</h3><p class="subtitle" style="margin:6px 0 0">Encontre rapido o que voce quer revisar</p></div><button class="ghost" type="button" onclick="resetHistoryFilters()">Limpar filtros</button></div>
+            <div class="filters">
+              <div><label for="symbolFilter">Ativo</label><input id="symbolFilter" placeholder="BTC, ETH, SOL..." /></div>
+              <div><label for="strategyFilter">Estrategia</label><select id="strategyFilter"><option value="all">Todas</option><option value="breakout">Breakout</option><option value="trend_pullback">Trend Pullback</option><option value="short_reversal">Short Reversal</option><option value="mean_reversion">Mean Reversion</option><option value="volatility_squeeze">Volatility Squeeze</option></select></div>
+              <div><label for="modeFilter">Modo</label><select id="modeFilter"><option value="all">Todos</option><option value="simulation">Simulacao</option><option value="real">Real</option></select></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="header"><div><h3 style="margin:0">Posicoes abertas</h3><p class="subtitle" style="margin:6px 0 0">Acompanhamento das operacoes em aberto</p></div><span id="openPositionsBadge" class="chip">0 abertas</span></div>
+            <div id="positionsMeta" class="meta-row"></div>
+            <div class="table-wrap"><table><thead><tr><th>Ativo</th><th>Estrategia</th><th>Entrada</th><th>Atual</th><th>Protecao</th><th>Status</th></tr></thead><tbody id="positions"></tbody></table></div>
+          </div>
+          <div class="panel">
+            <h3 style="margin-top:0">Ordens recentes</h3>
+            <p class="subtitle">Ultimas execucoes do bot</p>
+            <div id="tradesMeta" class="meta-row"></div>
+            <div class="table-wrap"><table><thead><tr><th>Ativo</th><th>Estrategia</th><th>Lado</th><th>Modo</th><th>Confianca</th><th>Execucao</th><th>Horario</th></tr></thead><tbody id="trades"></tbody></table></div>
+          </div>
+        </section>
+
+        <section id="alertas" class="section">
+          <div class="panel"><h3 style="margin-top:0">Alertas e eventos</h3><p class="subtitle">Mensagens recentes do bot</p><div id="alerts" class="alerts"></div></div>
+        </section>
+      </main>
     </div>
-    <script>
-      let token = localStorage.getItem("crypto_bot_token") || "";
-      let authMode = "register";
-      const $ = (id) => document.getElementById(id);
-      const authScreen = $("authScreen"), appShell = $("appShell"), authMessage = $("authMessage");
-      const emailInput = $("email"), nameInput = $("name"), passwordInput = $("password"), nameField = $("nameField");
-      const sessionDotEl = $("sessionDot"), sessionLabelEl = $("sessionLabel"), statusTextEl = $("statusText");
-      const statsEl = $("stats"), settingsEl = $("settings"), settingsStatusEl = $("settingsStatus"), credentialsStatusEl = $("credentialsStatus"), modeBadgeEl = $("modeBadge"), openPositionsBadgeEl = $("openPositionsBadge"), positionsEl = $("positions"), tradesEl = $("trades"), alertsEl = $("alerts"), backtestEl = $("backtest"), equityChartEl = $("equityChart"), strategyMetricsEl = $("strategyMetrics"), binanceApiKeyInput = $("binanceApiKey"), binanceApiSecretInput = $("binanceApiSecret");
-      const modeInput = $("mode"), analysisIntervalInput = $("analysisIntervalMinutes"), baseTradeAmountInput = $("baseTradeAmount"), maxOpenTradesInput = $("maxOpenTrades"), stopLossPctInput = $("stopLossPct"), takeProfitPctInput = $("takeProfitPct"), trailingStopPctInput = $("trailingStopPct"), breakEvenTriggerPctInput = $("breakEvenTriggerPct"), maxDailyLossPctInput = $("maxDailyLossPct"), maxPositionSizePctInput = $("maxPositionSizePct"), minConfidenceInput = $("minConfidence"), maxDailyTradesInput = $("maxDailyTrades"), cooldownMinutesInput = $("cooldownMinutes"), lowMarketCapLimitInput = $("lowMarketCapLimit"), minVolumeGrowthPctInput = $("minVolumeGrowthPct"), maxSpreadPctInput = $("maxSpreadPct"), slippagePctInput = $("slippagePct"), takerFeePctInput = $("takerFeePct"), makerFeePctInput = $("makerFeePct"), quoteAssetInput = $("quoteAsset"), whitelistInput = $("whitelist"), blacklistInput = $("blacklist");
+  </section>
 
-      function setAuthMode(mode) {
-        authMode = mode;
-        $("registerToggle").className = mode === "register" ? "secondary" : "ghost";
-        $("loginToggle").className = mode === "login" ? "secondary" : "ghost";
-        $("authSubmit").textContent = mode === "register" ? "Criar conta" : "Entrar";
-        nameField.classList.toggle("hidden", mode === "login");
-      }
-
-      function fillDemo() {
-        emailInput.value = "demo@bot.local";
-        nameInput.value = "Demo User";
-        passwordInput.value = "Password123!";
-      }
-
-      function showSection(id, button) {
-        const normalized = id === "settings" ? "settingsSection" : id === "alerts" ? "alertsSection" : id;
-        document.querySelectorAll(".section").forEach((section) => section.classList.remove("active"));
-        $(normalized)?.classList.add("active");
-        document.querySelectorAll(".tab-button").forEach((item) => item.classList.remove("active"));
-        button?.classList.add("active");
-      }
-
-      function setAppVisible(visible) {
-        authScreen.classList.toggle("hidden", visible);
-        appShell.classList.toggle("hidden", !visible);
-      }
-
-      function setSessionStatus(online, label, detail) {
-        sessionDotEl.textContent = online ? "Online" : "Offline";
-        sessionDotEl.style.background = online ? "rgba(78,224,162,.16)" : "rgba(255,113,137,.12)";
-        sessionLabelEl.textContent = label;
-        statusTextEl.textContent = detail;
-        statusTextEl.className = online ? "ok" : "muted";
-      }
-
-      function parseAssetList(value) { return value.split(",").map((item) => item.trim().toUpperCase()).filter(Boolean); }
-      function fmtMoney(v) { return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(Number(v || 0)); }
-      function fmtNumber(v, d = 2) { return Number(v || 0).toFixed(d); }
-      function strategyLabel(strategy) {
-        if (strategy === "breakout") return "Breakout";
-        if (strategy === "trend_pullback") return "Trend Pullback";
-        if (strategy === "short_reversal") return "Short Reversal";
-        if (strategy === "mean_reversion") return "Mean Reversion";
-        if (strategy === "volatility_squeeze") return "Volatility Squeeze";
-        return "N/A";
-      }
-
-      async function api(path, opt = {}) {
-        const headers = { "Content-Type": "application/json", ...(opt.headers || {}) };
-        if (token) headers.Authorization = `Bearer ${token}`;
-        const response = await fetch(path, { ...opt, headers });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error || "Erro inesperado");
-        return data;
-      }
-
-      function hydrateSettings(s) {
-        modeInput.value = s.mode ?? "simulation";
-        analysisIntervalInput.value = s.analysisIntervalMinutes ?? 5;
-        baseTradeAmountInput.value = s.baseTradeAmount ?? 100;
-        maxOpenTradesInput.value = s.maxOpenTrades ?? 3;
-        stopLossPctInput.value = s.stopLossPct ?? 2.5;
-        takeProfitPctInput.value = s.takeProfitPct ?? 4.5;
-        trailingStopPctInput.value = s.trailingStopPct ?? 1.5;
-        breakEvenTriggerPctInput.value = s.breakEvenTriggerPct ?? 1;
-        maxDailyLossPctInput.value = s.maxDailyLossPct ?? 2;
-        maxPositionSizePctInput.value = s.maxPositionSizePct ?? 10;
-        minConfidenceInput.value = s.minConfidence ?? 72;
-        maxDailyTradesInput.value = s.maxDailyTrades ?? 8;
-        cooldownMinutesInput.value = s.cooldownMinutes ?? 30;
-        lowMarketCapLimitInput.value = s.lowMarketCapLimit ?? 500000000;
-        minVolumeGrowthPctInput.value = s.minVolumeGrowthPct ?? 15;
-        maxSpreadPctInput.value = s.maxSpreadPct ?? 0.2;
-        slippagePctInput.value = s.slippagePct ?? 0.2;
-        takerFeePctInput.value = s.takerFeePct ?? 0.1;
-        makerFeePctInput.value = s.makerFeePct ?? 0.1;
-        quoteAssetInput.value = s.quoteAsset ?? "USDT";
-        whitelistInput.value = (s.whitelist || []).join(",");
-        blacklistInput.value = (s.blacklist || []).join(",");
-      }
-
-      function renderStats(summary) {
-        const pnl = Number(summary.portfolio.todayRealizedPnl || 0);
-        statsEl.innerHTML = `<div class="stat"><small>Saldo</small><strong>${fmtMoney(summary.portfolio.cashBalance)}</strong></div><div class="stat"><small>Exposição</small><strong>${fmtMoney(summary.portfolio.exposure)}</strong></div><div class="stat"><small>PnL diário</small><strong class="${pnl >= 0 ? "ok" : "danger"}">${fmtMoney(pnl)}</strong></div><div class="stat"><small>Trades hoje</small><strong>${summary.portfolio.todayTrades}</strong></div>`;
-      }
-
-      function renderEquityChart(series) {
-        if (!series || series.length === 0) {
-          equityChartEl.innerHTML = `<div class="muted">Ainda não há histórico suficiente para desenhar a curva de equity.</div>`;
-          return;
-        }
-        const values = series.map((point) => Number(point.equity || 0));
-        const min = Math.min(...values);
-        const max = Math.max(...values);
-        const range = Math.max(max - min, 1);
-        equityChartEl.innerHTML = series.map((point) => {
-          const height = 26 + (((Number(point.equity) - min) / range) * 74);
-          return `<div class="equity-bar" style="height:${height}%"><span>${point.day.slice(5)}</span></div>`;
-        }).join("");
-      }
-
-      function renderStrategyMetrics(items) {
-        if (!items || items.length === 0) {
-          strategyMetricsEl.innerHTML = `<div class="metric-card muted">Nenhuma operação fechada ainda para calcular performance por estratégia.</div>`;
-          return;
-        }
-        strategyMetricsEl.innerHTML = items.map((item) => `
-          <div class="metric-card">
-            <h4>${strategyLabel(item.strategy)}</h4>
-            <div class="metric-row"><span>Trades</span><strong>${item.trades}</strong></div>
-            <div class="metric-row"><span>Win rate</span><strong>${item.winRate}%</strong></div>
-            <div class="metric-row"><span>PnL total</span><strong class="${item.realizedPnl >= 0 ? "ok" : "danger"}">${fmtMoney(item.realizedPnl)}</strong></div>
-            <div class="metric-row"><span>PnL médio</span><strong class="${item.averagePnl >= 0 ? "ok" : "danger"}">${fmtMoney(item.averagePnl)}</strong></div>
-          </div>
-        `).join("");
-      }
-
-      function renderPositions(items) {
-        openPositionsBadgeEl.textContent = `${items.length} abertas`;
-        positionsEl.innerHTML = items.map((p) => `<tr><td><strong>${p.symbol}</strong><br><span class="muted">${fmtNumber(p.quantity, 6)} qty</span></td><td><span class="strategy-pill">${strategyLabel(p.strategy)}</span></td><td>${fmtNumber(p.entry_price, 6)}</td><td>${fmtNumber(p.current_price, 6)}</td><td>SL ${fmtNumber(p.stop_loss_price, 6)}<br>TP ${fmtNumber(p.take_profit_price, 6)}<br><span class="muted">Peak ${fmtNumber(p.peak_price || 0, 6)}</span></td><td>${p.trailing_armed ? "Trailing ativo" : "Proteção base"}</td></tr>`).join("") || `<tr><td colspan="6" class="muted">Sem posições abertas.</td></tr>`;
-      }
-
-      function renderTrades(items) {
-        tradesEl.innerHTML = items.map((t) => `<tr><td><strong>${t.symbol}</strong></td><td><span class="strategy-pill">${strategyLabel(t.strategy)}</span></td><td>${t.side}</td><td>${t.mode}</td><td>${t.ai_confidence ?? 0}</td><td>${t.exchange_status || t.status}<br><span class="muted">${t.executed_price ? fmtNumber(t.executed_price, 6) : "-"}</span></td><td>${new Date(t.created_at).toLocaleString()}</td></tr>`).join("") || `<tr><td colspan="7" class="muted">Sem ordens registradas.</td></tr>`;
-      }
-
-      function renderAlerts(items) {
-        alertsEl.innerHTML = items.map((alert) => `<div class="alert-card"><strong>${alert.event_type}</strong><p style="margin-top:8px">${alert.message}</p><small class="muted" style="display:block;margin-top:10px">${new Date(alert.created_at).toLocaleString()}</small></div>`).join("") || `<div class="alert-card muted">Sem alertas recentes.</div>`;
-      }
-
-      async function refreshDashboard() {
-        if (!token) return;
-        try {
-          const summary = await api("/api/dashboard/summary");
-          renderStats(summary);
-          renderEquityChart(summary.equitySeries || []);
-          renderStrategyMetrics(summary.strategyMetrics || []);
-          hydrateSettings(summary.settings);
-          renderPositions(summary.positions);
-          renderTrades(summary.trades);
-          renderAlerts(summary.alerts);
-          settingsEl.textContent = JSON.stringify(summary.settings, null, 2);
-          modeBadgeEl.textContent = `Modo: ${summary.settings.mode}`;
-          settingsStatusEl.textContent = summary.settings.active ? "Bot ativo" : "Bot parado";
-          setSessionStatus(true, "Operador conectado", "Dados sincronizados com sucesso para a área de testes.");
-          setAppVisible(true);
-        } catch (error) {
-          setSessionStatus(false, "Sessão inválida", error.message);
-          localStorage.removeItem("crypto_bot_token");
-          token = "";
-          setAppVisible(false);
-        }
-      }
-      async function submitAuth() {
-        try {
-          const payload = authMode === "register"
-            ? { email: emailInput.value, name: nameInput.value, password: passwordInput.value }
-            : { email: emailInput.value, password: passwordInput.value };
-          const result = await api(authMode === "register" ? "/api/auth/register" : "/api/auth/login", {
-            method: "POST",
-            body: JSON.stringify(payload)
-          });
-          token = result.token;
-          localStorage.setItem("crypto_bot_token", token);
-          authMessage.textContent = authMode === "register" ? "Conta criada com sucesso." : "Login realizado com sucesso.";
-          await refreshDashboard();
-        } catch (error) {
-          authMessage.textContent = error.message;
-        }
-      }
-
-      async function saveBinanceCredentials() {
-        try {
-          await api("/api/credentials/binance", { method: "PUT", body: JSON.stringify({ apiKey: binanceApiKeyInput.value, apiSecret: binanceApiSecretInput.value }) });
-          credentialsStatusEl.textContent = "Credenciais salvas";
-          binanceApiSecretInput.value = "";
-        } catch (error) {
-          credentialsStatusEl.textContent = error.message;
-        }
-      }
-
-      async function saveSettings() {
-        try {
-          const settings = await api("/api/bot/settings", {
-            method: "PUT",
-            body: JSON.stringify({
-              mode: modeInput.value,
-              quoteAsset: quoteAssetInput.value.toUpperCase(),
-              baseTradeAmount: Number(baseTradeAmountInput.value),
-              maxOpenTrades: Number(maxOpenTradesInput.value),
-              whitelist: parseAssetList(whitelistInput.value),
-              blacklist: parseAssetList(blacklistInput.value),
-              analysisIntervalMinutes: Number(analysisIntervalInput.value),
-              maxDailyLossPct: Number(maxDailyLossPctInput.value),
-              stopLossPct: Number(stopLossPctInput.value),
-              takeProfitPct: Number(takeProfitPctInput.value),
-              trailingStopPct: Number(trailingStopPctInput.value),
-              breakEvenTriggerPct: Number(breakEvenTriggerPctInput.value),
-              maxPositionSizePct: Number(maxPositionSizePctInput.value),
-              cooldownMinutes: Number(cooldownMinutesInput.value),
-              minConfidence: Number(minConfidenceInput.value),
-              maxDailyTrades: Number(maxDailyTradesInput.value),
-              lowMarketCapLimit: Number(lowMarketCapLimitInput.value),
-              minVolumeGrowthPct: Number(minVolumeGrowthPctInput.value),
-              maxSpreadPct: Number(maxSpreadPctInput.value),
-              slippagePct: Number(slippagePctInput.value),
-              takerFeePct: Number(takerFeePctInput.value),
-              makerFeePct: Number(makerFeePctInput.value)
-            })
-          });
-          settingsStatusEl.textContent = "Configuração salva";
-          settingsEl.textContent = JSON.stringify(settings, null, 2);
-          hydrateSettings(settings);
-          await refreshDashboard();
-        } catch (error) {
-          settingsStatusEl.textContent = error.message;
-        }
-      }
-
-      async function startBot() { try { const data = await api("/api/bot/start", { method: "POST" }); settingsStatusEl.textContent = `Bot ativo em ${data.settings.mode}`; await refreshDashboard(); } catch (error) { settingsStatusEl.textContent = error.message; } }
-      async function stopBot() { try { await api("/api/bot/stop", { method: "POST" }); settingsStatusEl.textContent = "Bot pausado"; await refreshDashboard(); } catch (error) { settingsStatusEl.textContent = error.message; } }
-      async function runBot() { try { const data = await api("/api/bot/run-once", { method: "POST" }); settingsStatusEl.textContent = data.message; await refreshDashboard(); } catch (error) { settingsStatusEl.textContent = error.message; } }
-      async function runBacktest() { try { const data = await api("/api/backtest", { method: "POST", body: JSON.stringify({ symbol: "BTCUSDT", interval: "1h", limit: 320 }) }); backtestEl.textContent = JSON.stringify(data.result, null, 2); } catch (error) { backtestEl.textContent = error.message; } }
-
-      async function logout() {
-        token = "";
-        localStorage.removeItem("crypto_bot_token");
-        setSessionStatus(false, "Desconectado", "A sessão foi encerrada.");
-        setAppVisible(false);
-      }
-
-      async function bootstrap() {
-        setAuthMode("register");
-        fillDemo();
-        if (!token) return;
-        try {
-          await api("/api/auth/me");
-          await refreshDashboard();
-        } catch {
-          localStorage.removeItem("crypto_bot_token");
-          token = "";
-        }
-      }
-
-      bootstrap();
-    </script>
-  </body>
+  <script>
+    let token = localStorage.getItem("crypto_bot_token") || "";
+    let currentSummary = null;
+    let autoRefreshTimer = null;
+    const $ = (id) => document.getElementById(id);
+    const appShell = $("appShell"), accessMessageEl = $("accessMessage");
+    const sessionDotEl = $("sessionDot"), sessionLabelEl = $("sessionLabel"), statusTextEl = $("statusText"), statsEl = $("stats"), settingsEl = $("settings"), settingsStatusEl = $("settingsStatus"), credentialsStatusEl = $("credentialsStatus"), modeBadgeEl = $("modeBadge"), openPositionsBadgeEl = $("openPositionsBadge"), positionsEl = $("positions"), tradesEl = $("trades"), alertsEl = $("alerts"), backtestEl = $("backtest"), equityChartEl = $("equityChart"), equityLegendEl = $("equityLegend"), strategyMetricsEl = $("strategyMetrics"), positionsMetaEl = $("positionsMeta"), tradesMetaEl = $("tradesMeta"), binanceApiKeyInput = $("binanceApiKey"), binanceApiSecretInput = $("binanceApiSecret"), autoRefreshEnabledEl = $("autoRefreshEnabled"), refreshIntervalEl = $("refreshInterval"), lastRefreshTextEl = $("lastRefreshText"), symbolFilterEl = $("symbolFilter"), strategyFilterEl = $("strategyFilter"), modeFilterEl = $("modeFilter");
+    const modeInput = $("mode"), analysisIntervalInput = $("analysisIntervalMinutes"), baseTradeAmountInput = $("baseTradeAmount"), maxOpenTradesInput = $("maxOpenTrades"), stopLossPctInput = $("stopLossPct"), takeProfitPctInput = $("takeProfitPct"), trailingStopPctInput = $("trailingStopPct"), breakEvenTriggerPctInput = $("breakEvenTriggerPct"), maxDailyLossPctInput = $("maxDailyLossPct"), maxPositionSizePctInput = $("maxPositionSizePct"), minConfidenceInput = $("minConfidence"), maxDailyTradesInput = $("maxDailyTrades"), cooldownMinutesInput = $("cooldownMinutes"), lowMarketCapLimitInput = $("lowMarketCapLimit"), minVolumeGrowthPctInput = $("minVolumeGrowthPct"), maxSpreadPctInput = $("maxSpreadPct"), slippagePctInput = $("slippagePct"), takerFeePctInput = $("takerFeePct"), makerFeePctInput = $("makerFeePct"), quoteAssetInput = $("quoteAsset"), whitelistInput = $("whitelist"), blacklistInput = $("blacklist");
+    function showSection(id,button){document.querySelectorAll(".section").forEach((s)=>s.classList.remove("active"));$(id)?.classList.add("active");document.querySelectorAll(".nav button").forEach((b)=>b.classList.remove("active"));button?.classList.add("active")}
+    function setAppVisible(){appShell.classList.remove("hidden")}
+    function setSessionStatus(online,label,detail){sessionDotEl.textContent=online?"Online":"Offline";sessionDotEl.style.background=online?"rgba(61,213,152,.16)":"rgba(255,107,122,.14)";sessionDotEl.style.color=online?"var(--green)":"var(--red)";sessionLabelEl.textContent=label;statusTextEl.textContent=detail}
+    function parseAssetList(value){return value.split(",").map((item)=>item.trim().toUpperCase()).filter(Boolean)}
+    function fmtMoney(value){return new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(value||0))}
+    function fmtNumber(value,decimals=2){return Number(value||0).toFixed(decimals)}
+    function strategyLabel(strategy){if(strategy==="breakout")return"Breakout";if(strategy==="trend_pullback")return"Trend Pullback";if(strategy==="short_reversal")return"Short Reversal";if(strategy==="mean_reversion")return"Mean Reversion";if(strategy==="volatility_squeeze")return"Volatility Squeeze";return"Nao informado"}
+    function scheduleAutoRefresh(){if(autoRefreshTimer)clearInterval(autoRefreshTimer);if(!token||autoRefreshEnabledEl.value!=="on")return;autoRefreshTimer=setInterval(()=>refreshDashboard(true),Number(refreshIntervalEl.value||30000))}
+    function resetHistoryFilters(){symbolFilterEl.value="";strategyFilterEl.value="all";modeFilterEl.value="all";applyHistoryFilters()}
+    function getDemoSummary(){return{settings:{mode:"simulation",active:false,analysisIntervalMinutes:5,baseTradeAmount:100,maxOpenTrades:3,stopLossPct:2.5,takeProfitPct:4.5,trailingStopPct:1.5,breakEvenTriggerPct:1,maxDailyLossPct:2,maxPositionSizePct:10,minConfidence:72,maxDailyTrades:8,cooldownMinutes:30,lowMarketCapLimit:500000000,minVolumeGrowthPct:15,maxSpreadPct:0.2,slippagePct:0.2,takerFeePct:0.1,makerFeePct:0.1,quoteAsset:"USDT",whitelist:["BTCUSDT","ETHUSDT","SOLUSDT"],blacklist:[]},portfolio:{cashBalance:1085.4,exposure:214.6,todayRealizedPnl:32.9,todayTrades:4},positions:[{symbol:"BTCUSDT",strategy:"breakout",quantity:0.0018,entry_price:62015.22,current_price:62541.13,stop_loss_price:60750.11,take_profit_price:64800.55,trailing_armed:true},{symbol:"ETHUSDT",strategy:"trend_pullback",quantity:0.043,entry_price:3188.4,current_price:3212.75,stop_loss_price:3120.1,take_profit_price:3324.8,trailing_armed:false}],trades:[{symbol:"BTCUSDT",strategy:"breakout",side:"BUY",mode:"simulation",ai_confidence:84,exchange_status:"FILLED",status:"filled",executed_price:62015.22,created_at:new Date().toISOString()},{symbol:"ETHUSDT",strategy:"trend_pullback",side:"BUY",mode:"simulation",ai_confidence:78,exchange_status:"FILLED",status:"filled",executed_price:3188.4,created_at:new Date(Date.now()-1000*60*42).toISOString()},{symbol:"SOLUSDT",strategy:"mean_reversion",side:"SELL",mode:"simulation",ai_confidence:73,exchange_status:"FILLED",status:"filled",executed_price:142.18,created_at:new Date(Date.now()-1000*60*95).toISOString()}],alerts:[{event_type:"trade_executed",message:"Compra simulada executada em BTCUSDT pelo setup Breakout.",created_at:new Date().toISOString()},{event_type:"opportunity_detected",message:"ETHUSDT entrou em zona favoravel para Trend Pullback.",created_at:new Date(Date.now()-1000*60*25).toISOString()},{event_type:"risk_update",message:"PnL do dia positivo. Limites de risco seguem dentro do esperado.",created_at:new Date(Date.now()-1000*60*55).toISOString()}],strategyMetrics:[{strategy:"breakout",trades:5,wins:4,losses:1,realizedPnl:58.2,averagePnl:11.64,winRate:80},{strategy:"trend_pullback",trades:4,wins:3,losses:1,realizedPnl:24.5,averagePnl:6.13,winRate:75},{strategy:"mean_reversion",trades:3,wins:2,losses:1,realizedPnl:8.7,averagePnl:2.9,winRate:66.7}],equitySeries:[{day:"04-08",equity:1000,pnl:0},{day:"04-09",equity:1018,pnl:18},{day:"04-10",equity:1031,pnl:13},{day:"04-11",equity:1024,pnl:-7},{day:"04-12",equity:1055,pnl:31},{day:"04-13",equity:1072,pnl:17},{day:"04-14",equity:1085.4,pnl:13.4}]}}
+    async function api(path,options={}){const headers={"Content-Type":"application/json",...(options.headers||{})};if(token)headers.Authorization=`Bearer ${token}`;const response=await fetch(path,{...options,headers});const data=await response.json();if(!response.ok)throw new Error(data.error||"Erro inesperado");return data}
+    function hydrateSettings(s){modeInput.value=s.mode??"simulation";analysisIntervalInput.value=s.analysisIntervalMinutes??5;baseTradeAmountInput.value=s.baseTradeAmount??100;maxOpenTradesInput.value=s.maxOpenTrades??3;stopLossPctInput.value=s.stopLossPct??2.5;takeProfitPctInput.value=s.takeProfitPct??4.5;trailingStopPctInput.value=s.trailingStopPct??1.5;breakEvenTriggerPctInput.value=s.breakEvenTriggerPct??1;maxDailyLossPctInput.value=s.maxDailyLossPct??2;maxPositionSizePctInput.value=s.maxPositionSizePct??10;minConfidenceInput.value=s.minConfidence??72;maxDailyTradesInput.value=s.maxDailyTrades??8;cooldownMinutesInput.value=s.cooldownMinutes??30;lowMarketCapLimitInput.value=s.lowMarketCapLimit??500000000;minVolumeGrowthPctInput.value=s.minVolumeGrowthPct??15;maxSpreadPctInput.value=s.maxSpreadPct??0.2;slippagePctInput.value=s.slippagePct??0.2;takerFeePctInput.value=s.takerFeePct??0.1;makerFeePctInput.value=s.makerFeePct??0.1;quoteAssetInput.value=s.quoteAsset??"USDT";whitelistInput.value=(s.whitelist||[]).join(",");blacklistInput.value=(s.blacklist||[]).join(",")}
+    function renderStats(summary){const pnl=Number(summary.portfolio.todayRealizedPnl||0);const equity=Number(summary.portfolio.cashBalance||0)+Number(summary.portfolio.exposure||0);statsEl.innerHTML=`<div class="summary"><small>Saldo atual</small><strong>${fmtMoney(summary.portfolio.cashBalance)}</strong></div><div class="summary"><small>Ganho ou perda do dia</small><strong class="${pnl>=0?"ok":"danger"}">${fmtMoney(pnl)}</strong></div><div class="summary"><small>Patrimonio atual</small><strong>${fmtMoney(equity)}</strong></div><div class="summary"><small>Trades do dia</small><strong>${summary.portfolio.todayTrades}</strong></div>`}
+    function renderEquityChart(series){if(!series||series.length===0){equityLegendEl.textContent="Sem historico suficiente.";equityChartEl.innerHTML=`<div class="muted">Ainda nao ha dados para desenhar a curva.</div>`;return}const values=series.map((p)=>Number(p.equity||0));const min=Math.min(...values);const max=Math.max(...values);const range=Math.max(max-min,1);const variation=values.at(-1)-values[0];equityLegendEl.textContent=`Ultimo valor: ${fmtMoney(values.at(-1))} | Variacao: ${variation>=0?"+":""}${fmtMoney(variation)}`;equityChartEl.innerHTML=series.map((p)=>{const height=30+(((Number(p.equity)-min)/range)*70);return`<div class="bar ${Number(p.pnl)<0?"neg":""}" style="height:${height}%"><span>${p.day.slice(5)}</span></div>`}).join("")}
+    function renderStrategyMetrics(items){if(!items||items.length===0){strategyMetricsEl.innerHTML=`<div class="metric muted">Nenhuma operacao fechada ainda.</div>`;return}strategyMetricsEl.innerHTML=items.map((item)=>`<div class="metric"><strong>${strategyLabel(item.strategy)}</strong><div class="metric-row"><span>Trades</span><span>${item.trades}</span></div><div class="metric-row"><span>Win rate</span><span>${item.winRate}%</span></div><div class="metric-row"><span>PnL total</span><span class="${item.realizedPnl>=0?"ok":"danger"}">${fmtMoney(item.realizedPnl)}</span></div><div class="metric-row"><span>PnL medio</span><span class="${item.averagePnl>=0?"ok":"danger"}">${fmtMoney(item.averagePnl)}</span></div><div class="progress"><span style="width:${Math.max(8,Math.min(100,Number(item.winRate)||0))}%"></span></div></div>`).join("")}
+    function renderPositions(items){openPositionsBadgeEl.textContent=`${items.length} abertas`;positionsMetaEl.innerHTML=`<span class="meta">Exibidas: ${items.length}</span><span class="meta">Estrategia: ${strategyFilterEl.value==="all"?"Todas":strategyLabel(strategyFilterEl.value)}</span>`;positionsEl.innerHTML=items.map((p)=>`<tr><td><strong>${p.symbol}</strong><br><span class="muted">${fmtNumber(p.quantity,6)} qtd</span></td><td><span class="tag">${strategyLabel(p.strategy)}</span></td><td>${fmtNumber(p.entry_price,6)}</td><td>${fmtNumber(p.current_price,6)}</td><td>SL ${fmtNumber(p.stop_loss_price,6)}<br>TP ${fmtNumber(p.take_profit_price,6)}</td><td>${p.trailing_armed?"Trailing ativo":"Protecao base"}</td></tr>`).join("")||`<tr><td colspan="6" class="muted">Sem posicoes abertas.</td></tr>`}
+    function renderTrades(items){const realTrades=items.filter((i)=>i.mode==="real").length;tradesMetaEl.innerHTML=`<span class="meta">Ordens exibidas: ${items.length}</span><span class="meta">Em real: ${realTrades}</span><span class="meta">Busca: ${symbolFilterEl.value.trim()||"livre"}</span>`;tradesEl.innerHTML=items.map((t)=>`<tr><td><strong>${t.symbol}</strong></td><td><span class="tag">${strategyLabel(t.strategy)}</span></td><td>${t.side}</td><td>${t.mode}</td><td>${t.ai_confidence??0}</td><td>${t.exchange_status||t.status}<br><span class="muted">${t.executed_price?fmtNumber(t.executed_price,6):"-"}</span></td><td>${new Date(t.created_at).toLocaleString()}</td></tr>`).join("")||`<tr><td colspan="7" class="muted">Sem ordens registradas.</td></tr>`}
+    function renderAlerts(items){alertsEl.innerHTML=items.map((a)=>`<div class="alert"><strong>${a.event_type}</strong><p>${a.message}</p><small class="muted">${new Date(a.created_at).toLocaleString()}</small></div>`).join("")||`<div class="alert muted">Sem alertas recentes.</div>`}
+    function applyHistoryFilters(){if(!currentSummary)return;const symbolNeedle=symbolFilterEl.value.trim().toUpperCase();const strategyFilter=strategyFilterEl.value;const modeFilter=modeFilterEl.value;const filteredPositions=(currentSummary.positions||[]).filter((item)=>{const bySymbol=!symbolNeedle||String(item.symbol||"").toUpperCase().includes(symbolNeedle);const byStrategy=strategyFilter==="all"||item.strategy===strategyFilter;return bySymbol&&byStrategy});const filteredTrades=(currentSummary.trades||[]).filter((item)=>{const bySymbol=!symbolNeedle||String(item.symbol||"").toUpperCase().includes(symbolNeedle);const byStrategy=strategyFilter==="all"||item.strategy===strategyFilter;const byMode=modeFilter==="all"||item.mode===modeFilter;return bySymbol&&byStrategy&&byMode});renderPositions(filteredPositions);renderTrades(filteredTrades)}
+    async function refreshDashboard(silent=false){if(!token){const summary=getDemoSummary();currentSummary=summary;renderStats(summary);renderEquityChart(summary.equitySeries||[]);renderStrategyMetrics(summary.strategyMetrics||[]);renderAlerts(summary.alerts||[]);hydrateSettings(summary.settings);applyHistoryFilters();settingsEl.textContent=JSON.stringify(summary.settings,null,2);modeBadgeEl.textContent=`Modo: ${summary.settings.mode}`;settingsStatusEl.textContent="Modo demonstracao";lastRefreshTextEl.textContent=`Ultima atualizacao: ${new Date().toLocaleTimeString()}`;accessMessageEl.textContent="Modo demonstracao ativo. A dashboard esta funcional com dados locais. Quando sua autenticacao externa salvar `crypto_bot_token`, os dados reais substituem esta simulacao.";setSessionStatus(true,"Modo demonstracao","Painel carregado com dados de exemplo para testes visuais.");setAppVisible();return}try{const summary=await api("/api/dashboard/summary");currentSummary=summary;renderStats(summary);renderEquityChart(summary.equitySeries||[]);renderStrategyMetrics(summary.strategyMetrics||[]);renderAlerts(summary.alerts||[]);hydrateSettings(summary.settings);applyHistoryFilters();settingsEl.textContent=JSON.stringify(summary.settings,null,2);modeBadgeEl.textContent=`Modo: ${summary.settings.mode}`;settingsStatusEl.textContent=summary.settings.active?"Bot ativo":"Bot parado";lastRefreshTextEl.textContent=`Ultima atualizacao: ${new Date().toLocaleTimeString()}`;accessMessageEl.textContent="Dados do bot carregados. Aqui você acompanha ganhos, perdas, ordens e risco em tempo real.";setSessionStatus(true,"Operador conectado","Dados carregados com sucesso.");setAppVisible();if(!silent)scheduleAutoRefresh()}catch(error){if(autoRefreshTimer)clearInterval(autoRefreshTimer);currentSummary=null;localStorage.removeItem("crypto_bot_token");token="";accessMessageEl.textContent="Falha ao carregar os dados reais. O painel voltou para o modo demonstracao.";setSessionStatus(false,"Sessao invalida",error.message);await refreshDashboard(true)}}
+    async function saveBinanceCredentials(){try{await api("/api/credentials/binance",{method:"PUT",body:JSON.stringify({apiKey:binanceApiKeyInput.value,apiSecret:binanceApiSecretInput.value})});credentialsStatusEl.textContent="Credenciais salvas";binanceApiSecretInput.value=""}catch(error){credentialsStatusEl.textContent=error.message}}
+    async function saveSettings(){try{const settings=await api("/api/bot/settings",{method:"PUT",body:JSON.stringify({mode:modeInput.value,quoteAsset:quoteAssetInput.value.toUpperCase(),baseTradeAmount:Number(baseTradeAmountInput.value),maxOpenTrades:Number(maxOpenTradesInput.value),whitelist:parseAssetList(whitelistInput.value),blacklist:parseAssetList(blacklistInput.value),analysisIntervalMinutes:Number(analysisIntervalInput.value),maxDailyLossPct:Number(maxDailyLossPctInput.value),stopLossPct:Number(stopLossPctInput.value),takeProfitPct:Number(takeProfitPctInput.value),trailingStopPct:Number(trailingStopPctInput.value),breakEvenTriggerPct:Number(breakEvenTriggerPctInput.value),maxPositionSizePct:Number(maxPositionSizePctInput.value),cooldownMinutes:Number(cooldownMinutesInput.value),minConfidence:Number(minConfidenceInput.value),maxDailyTrades:Number(maxDailyTradesInput.value),lowMarketCapLimit:Number(lowMarketCapLimitInput.value),minVolumeGrowthPct:Number(minVolumeGrowthPctInput.value),maxSpreadPct:Number(maxSpreadPctInput.value),slippagePct:Number(slippagePctInput.value),takerFeePct:Number(takerFeePctInput.value),makerFeePct:Number(makerFeePctInput.value)})});settingsStatusEl.textContent="Configuracoes salvas";settingsEl.textContent=JSON.stringify(settings,null,2);hydrateSettings(settings);await refreshDashboard()}catch(error){settingsStatusEl.textContent=error.message}}
+    async function startBot(){try{const data=await api("/api/bot/start",{method:"POST"});settingsStatusEl.textContent=`Bot ativo em ${data.settings.mode}`;await refreshDashboard()}catch(error){settingsStatusEl.textContent=error.message}}
+    async function stopBot(){try{await api("/api/bot/stop",{method:"POST"});settingsStatusEl.textContent="Bot pausado";await refreshDashboard()}catch(error){settingsStatusEl.textContent=error.message}}
+    async function runBot(){try{const data=await api("/api/bot/run-once",{method:"POST"});settingsStatusEl.textContent=data.message;await refreshDashboard()}catch(error){settingsStatusEl.textContent=error.message}}
+    async function runBacktest(){try{const data=await api("/api/backtest",{method:"POST",body:JSON.stringify({symbol:"BTCUSDT",interval:"1h",limit:320})});backtestEl.textContent=JSON.stringify(data.result,null,2)}catch(error){backtestEl.textContent=error.message}}
+    async function logout(){token="";currentSummary=null;localStorage.removeItem("crypto_bot_token");if(autoRefreshTimer)clearInterval(autoRefreshTimer);accessMessageEl.textContent="Token removido do navegador. Quando sua autenticação externa salvar um novo token, o painel volta a carregar.";setSessionStatus(false,"Aguardando acesso","Sem token JWT disponível para consultar a API.");setAppVisible()}
+    async function bootstrap(){setAppVisible();symbolFilterEl.addEventListener("input",applyHistoryFilters);strategyFilterEl.addEventListener("change",applyHistoryFilters);modeFilterEl.addEventListener("change",applyHistoryFilters);autoRefreshEnabledEl.addEventListener("change",scheduleAutoRefresh);refreshIntervalEl.addEventListener("change",scheduleAutoRefresh);if(!token){await refreshDashboard(true);return}try{await api("/api/auth/me");await refreshDashboard()}catch{localStorage.removeItem("crypto_bot_token");token="";await refreshDashboard(true)}}
+    bootstrap();
+  </script>
+</body>
 </html>
